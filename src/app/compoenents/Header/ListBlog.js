@@ -123,7 +123,7 @@ function ListBlog() {
                       <p className="text-sm">
                         {formatTimeAgo(filteredItems[0].createdAt)}
                       </p>
-                      <h2 className="text-3xl font-bold mt-1">
+                      <h2 className=" text-[20px] lg:text-3xl font-bold mt-1">
                         {filteredItems[0].title}
                       </h2>
                     </div>

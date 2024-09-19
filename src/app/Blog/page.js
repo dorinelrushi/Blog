@@ -56,10 +56,10 @@ function Page() {
   return (
     <div className="container mx-auto p-6">
       <div className="text-center m-auto mb-[65px]">
-        <h1 className="text-[45px] font-bold mb-[15px] text-[#1f1f1f]">
+        <h1 className="text-[30px]  lg:text-[45px] font-bold mb-[15px] text-[#1f1f1f]">
           My Latest Blog 🔥
         </h1>
-        <p className="max-w-[790px] text-center m-auto mb-[30px] text-[#5e5e5e]">
+        <p className="max-w-[890px] lg:max-w-[790px]  text-[14px] lg:text-[16px] text-center m-auto mb-[30px] text-[#5e5e5e]">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
           Suspendisse urna nibh viverra non semper suscipit.

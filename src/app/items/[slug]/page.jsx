@@ -16,7 +16,7 @@ const ItemDetail = async ({ params }) => {
   }
 
   return (
-    <div className="blogPost w-[65%]  mx-auto p-6">
+    <div className="blogPost w-[99%] lg:w-[65%]  mx-auto p-6">
       {item.imageUrl && (
         <Image
           src={item.imageUrl}
@@ -26,7 +26,9 @@ const ItemDetail = async ({ params }) => {
           className="h-auto rounded-md"
         />
       )}
-      <h1 className="text-[35px] mt-[25px] font-bold">{item.title}</h1>
+      <h1 className="text-[25px] lg:text-[35px] mt-[25px] font-bold">
+        {item.title}
+      </h1>
       <div className="flex mt-[18px] flex-wrap gap-2">
         {item.tags.map((tag, index) => (
           <span
@@ -37,7 +39,7 @@ const ItemDetail = async ({ params }) => {
           </span>
         ))}
       </div>
-      <div className="mt-10 text-[20px]">
+      <div className="mt-10  text-[14px] lg:text-[20px]">
         {/* Use html-react-parser to safely render the HTML content */}
         {parse(item.description)}
       </div>
