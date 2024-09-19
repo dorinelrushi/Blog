@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./compoenents/Header/header";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,10 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <Header />
-          <div className="p-[20px]">{children}</div>
+          <div className="p-[20px]">
+            {children}
+            <Analytics />
+          </div>
         </body>
       </html>
     </ClerkProvider>

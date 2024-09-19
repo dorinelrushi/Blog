@@ -16,7 +16,7 @@ const ItemDetail = async ({ params }) => {
   }
 
   return (
-    <div className="w-[65%] mx-auto p-6">
+    <div className="blogPost w-[65%]  mx-auto p-6">
       {item.imageUrl && (
         <Image
           src={item.imageUrl}

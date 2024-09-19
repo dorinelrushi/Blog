@@ -12,3 +12,8 @@ ul {
 ol {
   list-style-type: decimal; /* Ensure numbers are shown */
 }
+
+.blogPost a {
+  color: rgb(69, 72, 255);
+  text-decoration: underline;
+}

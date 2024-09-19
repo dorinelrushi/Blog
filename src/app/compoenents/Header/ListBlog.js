@@ -9,6 +9,7 @@ function ListBlog() {
   const [items, setItems] = useState([]);
   const [tags, setTags] = useState({});
   const [selectedTag, setSelectedTag] = useState("");
+  const [isGridView, setIsGridView] = useState(true); // State to manage grid or list view
 
   useEffect(() => {
     async function fetchItems() {
@@ -18,7 +19,6 @@ function ListBlog() {
       );
       setItems(sortedItems);
 
-      // Extract and count tags
       const tagCount = {};
       sortedItems.forEach((item) => {
         item.tags.forEach((tag) => {
@@ -52,17 +52,40 @@ function ListBlog() {
       <h1 className="text-5xl font-extrabold mb-12 text-center text-[white]">
         List of Blog
       </h1>
+
+      {/* Toggle View Buttons */}
+
       <div className="flex flex-wrap ">
         {/* Sidebar with tags */}
         <div className="w-full md:w-1/4 p-4 bg-[#ffffff]">
+          <div className="hidden lg:block">
+            <div className="flex justify-star  mb-4">
+              <button
+                onClick={() => setIsGridView(true)}
+                className={`px-4 py-1 mr-2 ${
+                  isGridView ? "bg-[black] text-white" : "bg-gray-200"
+                } rounded`}
+              >
+                Grid View
+              </button>
+              <button
+                onClick={() => setIsGridView(false)}
+                className={`px-4 py-1 ${
+                  !isGridView ? "bg-[black] text-white" : "bg-gray-200"
+                } rounded`}
+              >
+                List View
+              </button>
+            </div>
+          </div>
           <h2 className="text-2xl  text-[#141414] font-bold mb-4">Tags</h2>
-          <ul className="l list-none">
+          <ul className="list-none">
             {Object.keys(tags).map((tag) => (
               <li key={tag} className="mb-2">
                 <button
                   onClick={() => setSelectedTag(tag)}
                   className={`text-[#c2c2c2] hover:underline ${
-                    selectedTag === tag ? "" : ""
+                    selectedTag === tag ? "font-bold" : ""
                   }`}
                 >
                   {tag} ({tags[tag]})
@@ -73,7 +96,7 @@ function ListBlog() {
               <button
                 onClick={() => setSelectedTag("")}
                 className={`text-[#000000] hover:underline ${
-                  selectedTag === "" ? "" : ""
+                  selectedTag === "" ? "font-bold" : ""
                 }`}
               >
                 All Tags
@@ -82,21 +105,21 @@ function ListBlog() {
           </ul>
         </div>
         {/* Main content */}
-        <div className="w-full md:w-2/3">
+        <div className="w-full  md:w-2/3">
           {filteredItems.length > 0 && (
             <div>
               {/* Featured Post */}
               <Link href={`/items/${filteredItems[0].slug}`}>
-                <div className="mb-12 p-6 bg-[#f0f0f1] rounded-lg shadow-xl relative hover:shadow-2xl transition-shadow duration-300">
-                  <div className="relative h-64">
+                <div className="mb-[15px] p-1 bg-[#ffffff] ounded-[15px] relative hover:shadow-2xl transition-shadow duration-300">
+                  <div className="relative h-[350px]">
                     <Image
                       src={filteredItems[0].imageUrl}
                       alt={filteredItems[0].title}
                       layout="fill"
                       objectFit="cover"
-                      className="rounded-lg"
+                      className="rounded-[15px]"
                     />
-                    <div className="absolute bottom-4 left-4 bg-[#0000009f]  text-white p-4 rounded-lg">
+                    <div className="absolute bottom-4 left-4 bg-[#020202ab] text-white p-4 rounded-[15px]">
                       <p className="text-sm">
                         {formatTimeAgo(filteredItems[0].createdAt)}
                       </p>
@@ -108,12 +131,18 @@ function ListBlog() {
                 </div>
               </Link>
 
-              {/* Grid of Other Posts */}
-              <div className="grid grid-cols-1 items-start  sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Grid or List of Other Posts */}
+              <div
+                className={`${
+                  isGridView
+                    ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                    : "flex flex-col space-y-3"
+                }`}
+              >
                 {filteredItems.slice(1).map((item) => (
                   <div
                     key={item.id}
-                    className="flex flex-col p-6 bg-[#ffffff] rounded-lg shadow-lg shadow-[#ecebebe8] hover:shadow-xl transition-shadow duration-300"
+                    className="flex flex-col p-[13px] bg-[#ffffff] rounded-lg border-[1px] hover:shadow-xl transition-shadow duration-300"
                   >
                     <div className="relative h-48">
                       <Image
@@ -123,14 +152,14 @@ function ListBlog() {
                         objectFit="cover"
                         className="rounded-lg"
                       />
-                      <div className="absolute bottom-2 left-2 bg-[#30eb4f] text-[#000000] p-2 rounded-lg">
+                      <div className="absolute bottom-2 left-2 bg-[#191a19] text-[#ffffff] p-2 rounded-lg">
                         <p className="text-xs">
                           {formatTimeAgo(item.createdAt)}
                         </p>
                       </div>
                     </div>
                     <div className="mt-4 flex flex-col justify-between flex-grow">
-                      <h2 className="text-[19px] leading-[22px] font-semibold text-[#0c0c0c] ">
+                      <h2 className="text-[19px] leading-[22px] font-semibold text-[#0c0c0c]">
                         {item.title}
                       </h2>
                       <Link href={`/items/${item.slug}`}>

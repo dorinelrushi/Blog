@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getItems, deleteItemById } from "@/actions"; // Import your server actions
+import { getItems, deleteItemById } from "@/actions"; // Import server actions
 
 function Page() {
   const { user } = useUser();
@@ -55,14 +55,14 @@ function Page() {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="  text-center m-auto mb-[65px]">
+      <div className="text-center m-auto mb-[65px]">
         <h1 className="text-[45px] font-bold mb-[15px] text-[#1f1f1f]">
           My Latest Blog 🔥
         </h1>
         <p className="max-w-[790px] text-center m-auto mb-[30px] text-[#5e5e5e]">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-          Suspendisse urna nibh viverra non semper suscipit .
+          Suspendisse urna nibh viverra non semper suscipit.
         </p>
         <Link
           className=" bg-[black] text-[white] rounded-[8px] px-[28px] py-[18px]"
@@ -101,9 +101,15 @@ function Page() {
               >
                 View Details
               </Link>
+              <Link
+                href={`/update/${item.slug}`} // Link to the update page
+                className="p-[5px] px-[19px] rounded-[5px] bg-[#141414] text-[white]"
+              >
+                Edit
+              </Link>
               <button
                 onClick={() => handleDelete(item._id)} // Handle item deletion
-                className=" p-[5px] px-[19px] rounded-[5px] bg-[#f53e3e]  text-[white] hover:underline"
+                className="p-[5px] px-[19px] rounded-[5px] bg-[#f53e3e] text-[white] hover:underline"
               >
                 Delete
               </button>

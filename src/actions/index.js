@@ -50,19 +50,26 @@ export async function getItems(userId) {
 
 export async function getItemBySlug(slug) {
   await connectToDB();
-
   try {
     const item = await Item.findOne({ slug });
+
     if (!item) {
       return null;
     }
-    return item.toObject({ getters: true, versionKey: false });
+
+    // Convert the Mongoose document to a plain JavaScript object
+    const plainItem = item.toObject({ getters: true, versionKey: false });
+
+    // Convert `_id` and `createdAt` to string if needed
+    plainItem._id = plainItem._id.toString();
+    plainItem.createdAt = plainItem.createdAt.toISOString();
+
+    return plainItem;
   } catch (error) {
     console.error("Error fetching item by slug:", error);
     return null;
   }
 }
-
 //get all items from db
 
 export async function getAllItems() {
@@ -92,6 +99,39 @@ export async function deleteItemById(id) {
     return { success: true };
   } catch (error) {
     console.error("Error deleting item:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+//update
+export async function updateItem(data, userId, slug) {
+  await connectToDB();
+  const { title, description, image, tags } = data;
+
+  try {
+    const item = await Item.findOne({ slug, userId }); // Find the item by slug and userId
+    if (!item) {
+      return { success: false, error: "Item not found" };
+    }
+
+    // Update fields
+    item.title = title || item.title;
+    item.description = description || item.description;
+    item.imageUrl = image || item.imageUrl;
+    item.tags = tags || item.tags;
+
+    // If the title is updated, regenerate the slug
+    if (title && title !== item.title) {
+      item.slug = slugify(title, { lower: true, strict: true });
+    }
+
+    await item.save();
+    const updatedItem = item.toObject({ getters: true, versionKey: false });
+    updatedItem._id = updatedItem._id.toString();
+
+    return { success: true, data: updatedItem };
+  } catch (error) {
+    console.error("Error updating item:", error);
     return { success: false, error: error.message };
   }
 }
