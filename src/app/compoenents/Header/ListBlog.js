@@ -1,9 +1,9 @@
 "use client";
-import { getAllItems } from "@/actions";
+import { getAllItems } from "@/actions"; // Assuming this is an API call to fetch blog items
 import React, { useEffect, useState } from "react";
-import { formatDistanceToNowStrict } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
+import { formatDistanceToNowStrict } from "date-fns"; // For date formatting
+import Image from "next/image"; // For optimized image handling in Next.js
+import Link from "next/link"; // For internal linking in Next.js
 
 function ListBlog() {
   const [items, setItems] = useState([]);
@@ -24,6 +24,7 @@ function ListBlog() {
 
       setItems(sortedItems);
 
+      // Aggregating tags and their counts
       const tagCount = {};
       sortedItems.forEach((item) => {
         item.tags.forEach((tag) => {
