@@ -55,10 +55,6 @@ function ListBlog() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-5xl font-extrabold mb-12 text-center text-[white]">
-        List of Blog
-      </h1>
-
       {/* Search Box */}
       <div className="mb-[30px]">
         <input
@@ -179,6 +175,7 @@ function ListBlog() {
                       layout="fill"
                       objectFit="cover"
                       className="rounded-[15px]"
+                      priority
                     />
                     <div className="absolute bottom-4 left-4 bg-[#020202ab] text-white p-4 rounded-[15px]">
                       <p className="text-sm">
