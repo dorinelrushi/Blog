@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { SaveItems } from "@/actions";
 import dynamic from "next/dynamic";
+import Swal from "sweetalert2"; // Import SweetAlert2
+import "sweetalert2/dist/sweetalert2.min.css"; // Import SweetAlert2 CSS
 import "react-quill/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -68,7 +70,11 @@ function FormInput() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      alert("You need to be logged in to submit the form");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You need to be logged in to submit the form",
+      });
       return;
     }
 
@@ -81,10 +87,25 @@ function FormInput() {
       setDescription("");
       setImage(null);
       setTags([]);
-      alert("Item Saved");
-      window.location.reload();
+
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Item saved successfully.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // Optionally reload the page after a delay
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
     } else {
-      alert("Failed to save item: " + result.error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to save item: " + result.error,
+      });
     }
   };
 

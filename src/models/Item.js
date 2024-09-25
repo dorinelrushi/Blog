@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import slugify from "slugify";
-
 const ItemSchema = new mongoose.Schema(
   {
     title: {
@@ -28,6 +27,11 @@ const ItemSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: true,
+    },
+    views: {
+      type: Map, // Track views from unique IPs
+      of: Boolean,
+      default: {},
     },
   },
   {

@@ -70,15 +70,37 @@ export async function getItemBySlug(slug) {
     return null;
   }
 }
-//get all items from db
 
+export async function incrementViews(slug, ipAddress) {
+  await connectToDB();
+
+  try {
+    const item = await Item.findOne({ slug });
+    if (!item) {
+      return { success: false, error: "Item not found" };
+    }
+
+    // Only increment views if this IP has not been recorded before
+    if (!item.views.get(ipAddress)) {
+      item.views.set(ipAddress, true);
+      await item.save();
+    }
+
+    return { success: true, views: item.views.size };
+  } catch (error) {
+    console.error("Error incrementing views:", error);
+    return { success: false, error: error.message };
+  }
+}
+//get all items from db
 export async function getAllItems() {
   await connectToDB();
   const items = await Item.find({});
-  // Convert Mongoose documents to plain JavaScript objects
+
   const plainItems = items.map((item) => {
     const plainItem = item.toObject({ getters: true, versionKey: false });
     plainItem._id = plainItem._id.toString();
+    plainItem.viewsCount = item.views ? item.views.size : 0; // Check if views is defined
     return plainItem;
   });
 
