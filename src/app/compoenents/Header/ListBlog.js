@@ -16,10 +16,12 @@ function ListBlog() {
   useEffect(() => {
     async function fetchItems() {
       const fetchedItems = await getAllItems();
-      // Sort items by createdAt (or other logic) instead of viewsCount
+
+      // Sort items by creation date in descending order (newest first)
       const sortedItems = fetchedItems.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
+
       setItems(sortedItems);
 
       const tagCount = {};
