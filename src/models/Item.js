@@ -28,11 +28,6 @@ const ItemSchema = new mongoose.Schema(
       unique: true,
       required: true,
     },
-    views: {
-      type: Map, // Track views from unique IPs
-      of: Boolean,
-      default: {},
-    },
   },
   {
     timestamps: true,

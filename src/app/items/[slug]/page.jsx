@@ -1,9 +1,8 @@
 import { getItemBySlug } from "@/actions";
-import React from "react";
-import Image from "next/image";
-import parse from "html-react-parser"; // Import html-react-parser to render HTML
+import { clerkClient } from "@clerk/nextjs/server"; // Clerk server-side API
+import ItemDetailClient from "./ItemDetailClient"; // Client component for rendering the UI
 
-const ItemDetail = async ({ params }) => {
+export default async function ItemDetail({ params }) {
   const { slug } = params;
   const item = await getItemBySlug(slug);
 
@@ -15,36 +14,20 @@ const ItemDetail = async ({ params }) => {
     );
   }
 
+  // Fetch the user data (author) from Clerk using userId
+  const author = await clerkClient.users.getUser(item.userId);
+
+  // Convert the user data to plain object (extract needed fields)
+  const authorPlain = {
+    firstName: author.firstName,
+    lastName: author.lastName,
+    profileImageUrl: author.profileImageUrl, // Clerk user's profile image
+  };
+
   return (
-    <div className="blogPost w-[99%] lg:w-[65%]  mx-auto p-6">
-      {item.imageUrl && (
-        <Image
-          src={item.imageUrl}
-          alt={item.title}
-          width={1000}
-          height={1000}
-          className="h-auto rounded-md"
-        />
-      )}
-      <h1 className="text-[25px] lg:text-[35px] mt-[25px] font-bold">
-        {item.title}
-      </h1>
-      <div className="flex mt-[18px] flex-wrap gap-2">
-        {item.tags.map((tag, index) => (
-          <span
-            key={index}
-            className="px-2 py-1 bg-blue-100 text-blue-800 rounded"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div className="mt-10  text-[14px] lg:text-[20px]">
-        {/* Use html-react-parser to safely render the HTML content */}
-        {parse(item.description)}
-      </div>
+    <div className="blogPost w-[99%] lg:w-[65%] mx-auto p-6">
+      {/* Pass the item and author data as plain objects to the client component */}
+      <ItemDetailClient item={item} author={authorPlain} />
     </div>
   );
-};
-
-export default ItemDetail;
+}

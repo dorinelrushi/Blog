@@ -16,9 +16,9 @@ function ListBlog() {
   useEffect(() => {
     async function fetchItems() {
       const fetchedItems = await getAllItems();
-      // Sort items by viewsCount in descending order
+      // Sort items by createdAt (or other logic) instead of viewsCount
       const sortedItems = fetchedItems.sort(
-        (a, b) => b.viewsCount - a.viewsCount
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setItems(sortedItems);
 
@@ -220,7 +220,7 @@ function ListBlog() {
                       <h2 className="text-[19px] leading-[22px] font-semibold text-[#0c0c0c]">
                         {item.title}
                       </h2>
-                      <p>Views: {item.viewsCount}</p>
+
                       <Link href={`/items/${item.slug}`}>
                         <span className="text-blue-600 hover:underline mt-2 cursor-pointer inline-block">
                           Read More
