@@ -42,6 +42,8 @@ export default function ItemDetailClient({ item }) {
         // Ensure paragraph breaks and <br> tags are rendered correctly with line breaks
         return (
           <div style={{ whiteSpace: "pre-wrap" }}>
+            {" "}
+            {/* Ky është ndryshimi kryesor */}
             {domToReact(domNode.children)}
           </div>
         );
@@ -53,42 +55,13 @@ export default function ItemDetailClient({ item }) {
     <div>
       {/* Display blog post image */}
       {item.imageUrl && (
-        <div>
-          <Image
-            src={item.imageUrl}
-            alt={item.title}
-            width={1000}
-            height={1000}
-            className="h-auto w-full rounded-md"
-          />
-
-          {/* Share buttons */}
-          <div className="mt-4 flex space-x-4">
-            {/* Twitter Share */}
-            <a
-              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                item.imageUrl
-              )}&text=${encodeURIComponent(item.title)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Share on Twitter
-            </a>
-
-            {/* LinkedIn Share */}
-            <a
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                item.imageUrl
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-700 hover:underline"
-            >
-              Share on LinkedIn
-            </a>
-          </div>
-        </div>
+        <Image
+          src={item.imageUrl}
+          alt={item.title}
+          width={1000}
+          height={1000}
+          className="h-auto w-full rounded-md"
+        />
       )}
 
       {/* Display blog post title */}
