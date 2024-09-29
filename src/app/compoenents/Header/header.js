@@ -19,6 +19,11 @@ async function Header() {
       show: true,
     },
     {
+      label: "How it Works",
+      path: "/HowWorks",
+      show: true,
+    },
+    {
       label: "My Blog",
       path: "/Blog",
       show: user,

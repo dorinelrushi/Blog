@@ -141,9 +141,13 @@ export default function Words() {
       } else {
         if (!buyers[wordId]) {
           const orders = await getOrdersByWord(wordId);
+
+          // Reverse the orders so the latest buyer appears first
+          const reversedOrders = orders.reverse();
+
           setBuyers((prevBuyers) => ({
             ...prevBuyers,
-            [wordId]: orders,
+            [wordId]: reversedOrders, // Use reversed orders
           }));
         }
         setActiveDropdown(wordId);
@@ -219,29 +223,103 @@ export default function Words() {
         {fetching ? (
           <p className="text-center text-gray-600">Loading words...</p>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full mb-8 text-md text-gray-800">
-              <thead className="bg-gray-800 text-white uppercase">
-                <tr>
-                  <th className="px-6 py-3 text-left">#</th>{" "}
-                  {/* Added column */}
-                  <th className="px-6 py-3 text-left">TalentS</th>
-                  <th className="px-6 py-3 text-left">Price</th>
-                  <th className="px-6 py-3 text-left">Purchases</th>
-                  <th className="px-6 py-3 text-left">Buy</th>
-                  <th className="px-6 py-3 text-left">Buyers</th>
-                  {isSignedIn && (
-                    <th className="px-6 py-3 text-left">Actions</th> // Only show when signed in
-                  )}
-                </tr>
-              </thead>
-              <tbody className="text-gray-700">
-                {filteredWords.length > 0 ? (
-                  filteredWords.map(
-                    (
-                      wordItem,
-                      index // Added index to map
-                    ) => (
+          <>
+            {/* Mobile View: Block Format */}
+            <div className="block md:hidden">
+              {filteredWords.length > 0 ? (
+                filteredWords.map((wordItem, index) => (
+                  <div
+                    key={wordItem._id}
+                    className={`mb-4 p-4 rounded-lg shadow-md ${
+                      (purchaseCounts[wordItem._id] || 0) > 3
+                        ? "bg-yellow-100"
+                        : "bg-gray-100"
+                    }`}
+                  >
+                    <p className="font-bold">#{index + 1}</p>
+                    <p>
+                      <strong>Talent:</strong> {wordItem.word}
+                    </p>
+                    <p>
+                      <strong>Price:</strong> ${wordItem.price}
+                    </p>
+                    <p>
+                      <strong>Purchases:</strong>{" "}
+                      {purchaseCounts[wordItem._id] || 0}
+                    </p>
+                    {purchaseCounts[wordItem._id] > 3 && (
+                      <span className="ml-2 inline-block text-xs text-yellow-800 bg-yellow-200 py-1 px-2 rounded-full">
+                        Popular
+                      </span>
+                    )}
+                    <div className="mt-4">
+                      <button
+                        className="bg-[#2ac283] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
+                        onClick={() => handleShowPayPal(wordItem._id)}
+                      >
+                        Promote
+                      </button>
+                    </div>
+                    {/* Show Buyers button for mobile */}
+                    <div className="mt-4">
+                      <button
+                        className="flex items-center gap-[5px] text-[#2ac283] border border-[#2ac28386] bg-[#2ac28318] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
+                        onClick={() => handleFetchBuyers(wordItem._id)}
+                      >
+                        Show Buyers <GoTriangleDown />
+                      </button>
+                      {activeDropdown === wordItem._id &&
+                        buyers[wordItem._id] && (
+                          <div className="mt-2 p-4 bg-white border border-gray-300 rounded-lg shadow-lg">
+                            <ul className="text-sm text-gray-700 max-h-40 overflow-y-auto">
+                              {buyers[wordItem._id].map((buyer) => (
+                                <li
+                                  key={buyer._id}
+                                  className="border-b last:border-none py-2"
+                                >
+                                  {buyer.payerName} (${buyer.amount})
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                    </div>
+                    {isSignedIn && (
+                      <div className="mt-4">
+                        <button
+                          className="bg-red-500 flex items-center gap-[10px] text-white py-2 px-4 rounded-[5px] hover:bg-red-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-400"
+                          onClick={() => handleDeleteWord(wordItem._id)}
+                        >
+                          Delete <RiDeleteBin6Fill />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No words found</p>
+              )}
+            </div>
+
+            {/* Desktop Table */}
+            <div className="hidden md:block">
+              <table className="table-auto w-full mb-8 text-md text-gray-800">
+                <thead className="bg-gray-800 text-white uppercase">
+                  <tr>
+                    <th className="px-4 py-3 text-left">#</th>
+                    <th className="px-4 py-3 text-left">TalentS</th>
+                    <th className="px-4 py-3 text-left">Price</th>
+                    <th className="px-4 py-3 text-left">Purchases</th>
+                    <th className="px-4 py-3 text-left">Buy</th>
+                    <th className="px-4 py-3 text-left">Buyers</th>
+                    {isSignedIn && (
+                      <th className="px-4 py-3 text-left">Actions</th>
+                    )}
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700">
+                  {filteredWords.length > 0 ? (
+                    filteredWords.map((wordItem, index) => (
                       <tr
                         key={wordItem._id}
                         className={`border-b hover:bg-gray-100 transition ${
@@ -250,32 +328,31 @@ export default function Words() {
                             : ""
                         }`}
                       >
-                        <td className="px-6 py-4 font-medium">{index + 1}</td>{" "}
-                        {/* Display index */}
-                        <td className="px-6 py-4 font-medium">
+                        <td className="px-4 py-4 font-medium">{index + 1}</td>
+                        <td className="px-4 py-4 font-medium">
                           {wordItem.word}
                         </td>
-                        <td className="px-6 py-4">${wordItem.price}</td>
-                        <td className="px-6 py-4">
-                          {purchaseCounts[wordItem._id] || 0}{" "}
+                        <td className="px-4 py-4">${wordItem.price}</td>
+                        <td className="px-4 py-4">
+                          {purchaseCounts[wordItem._id] || 0}
                           {purchaseCounts[wordItem._id] > 3 && (
                             <span className="ml-2 inline-block text-xs text-yellow-800 bg-yellow-200 py-1 px-2 rounded-full">
                               Popular
                             </span>
                           )}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 py-4">
                           <button
-                            className="bg-[#2ac283] text-white py-2 px-4 rounded-[5px]  transition-all duration-300  "
+                            className="bg-[#2ac283] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
                             onClick={() => handleShowPayPal(wordItem._id)}
                           >
                             Promote
                           </button>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 py-4">
                           <div className="relative inline-block">
                             <button
-                              className=" flex items-center gap-[5px] text-[#2ac283] border border-[#2ac28386] bg-[#2ac28318] outline-none  py-2 px-4 rounded-[5px] transition-all duration-300 focus:outline-none focus:ring-4 "
+                              className="flex items-center gap-[5px] text-[#2ac283] border border-[#2ac28386] bg-[#2ac28318] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
                               onClick={() => handleFetchBuyers(wordItem._id)}
                             >
                               Show Buyers <GoTriangleDown />
@@ -283,7 +360,7 @@ export default function Words() {
                             {activeDropdown === wordItem._id &&
                               buyers[wordItem._id] && (
                                 <div className="absolute z-10 left-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg">
-                                  <ul className="py-2 px-4 text-sm text-gray-700 max-h-40 overflow-auto">
+                                  <ul className="py-2 px-4 text-sm text-gray-700 max-h-40 overflow-y-auto">
                                     {buyers[wordItem._id].map((buyer) => (
                                       <li
                                         key={buyer._id}
@@ -298,7 +375,7 @@ export default function Words() {
                           </div>
                         </td>
                         {isSignedIn && (
-                          <td className="px-6 py-4">
+                          <td className="px-4 py-4">
                             <button
                               className="bg-red-500 flex items-center gap-[10px] text-white py-2 px-4 rounded-[5px] hover:bg-red-600 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-400"
                               onClick={() => handleDeleteWord(wordItem._id)}
@@ -308,18 +385,18 @@ export default function Words() {
                           </td>
                         )}
                       </tr>
-                    )
-                  )
-                ) : (
-                  <tr>
-                    <td colSpan="7" className="text-center py-4">
-                      No words found
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="7" className="text-center py-4">
+                        No words found
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
 
         {showPayPalModal && (
