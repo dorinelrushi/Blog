@@ -89,3 +89,31 @@ button.is-active {
   letter-spacing: 0.05rem; /* Adds space between letters */
   line-height: 1.6; /* Adds vertical space between lines */
 }
+
+.blogPost a {
+  color: rgb(253, 59, 59);
+  text-shadow: 0px 1px 15px rgba(255, 2, 2, 0.486);
+}
+
+.paypal-buttons-container {
+  width: 100% !important;
+  max-width: 600px !important; /* Set the maximum width */
+}
+
+.paypal-button,
+.paypal-button-container {
+  width: 100% !important;
+}
+
+.paypal-button .paypal-button-content {
+  width: 100% !important;
+}
+
+.paypal-card-fields,
+.paypal-card-fields-container {
+  width: 100% !important;
+}
+
+.paypal-card-fields .card-field-input {
+  width: 100% !important;
+}

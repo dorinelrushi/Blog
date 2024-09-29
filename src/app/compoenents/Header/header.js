@@ -14,6 +14,11 @@ async function Header() {
       show: true,
     },
     {
+      label: "Talent Board",
+      path: "/Words",
+      show: true,
+    },
+    {
       label: "My Blog",
       path: "/Blog",
       show: user,
@@ -23,6 +28,7 @@ async function Header() {
       path: "/AddBlog",
       show: user,
     },
+
     {
       label: "Login",
       path: "/sign-in",
