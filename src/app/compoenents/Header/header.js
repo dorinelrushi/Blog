@@ -45,7 +45,7 @@ async function Header() {
     <div className="bg-[#ffffff] py-[15px] shadow-lg shadow-[#faf9f9]">
       <div className="flex w-[80%] justify-between items-center m-auto">
         <Link href="/">
-          <Image src="/monster.png" width={190} height={100} alt="Logo" />
+          <Image src="/dev.svg" width={200} height={100} alt="Logo" />
         </Link>
 
         {/* Desktop Menu */}

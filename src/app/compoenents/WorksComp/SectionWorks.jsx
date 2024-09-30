@@ -84,7 +84,10 @@ function SectionWorks() {
 
         {/* Extra content with show more functionality */}
         <div className="mt-[100px]">
-          <h2 className="text-[#2380FA] text-[60px] max-w-[700px] font-semibold leading-[73px]">
+          <h2
+            className="text-[#2380FA] text-[26px] lg:text-[60px] max-w-[700px] font-semibold leading-[38px]
+           lg:leading-[73px]"
+          >
             Ensuring Fair Competition and Equal Access on the Platform
           </h2>
           <div className="showMore">

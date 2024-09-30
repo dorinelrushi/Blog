@@ -10,12 +10,36 @@ export default function ItemDetailClient({ item }) {
   const [mostFrequentWord, setMostFrequentWord] = useState("");
   const [wordCount, setWordCount] = useState(0);
 
-  // Function to count word occurrences
+  // Function to count word occurrences, excluding common stop words
   const findMostFrequentWord = (text) => {
+    const stopWords = [
+      "the",
+      "of",
+      "or",
+      "and",
+      "a",
+      "to",
+      "in",
+      "on",
+      "with",
+      "for",
+      "is",
+      "it",
+      "this",
+      "that",
+      "at",
+      "by",
+      "from",
+      "but",
+      "as",
+      "be",
+      "an",
+    ]; // Add more stop words as needed
     const words = text
       .toLowerCase()
       .replace(/[^\w\s]/g, "") // Remove punctuation
-      .split(/\s+/); // Split the text into words
+      .split(/\s+/) // Split the text into words
+      .filter((word) => !stopWords.includes(word)); // Filter out stop words
 
     const wordMap = {};
 
