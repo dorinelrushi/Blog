@@ -57,7 +57,7 @@ function ListBlog() {
     );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 mt-[30px]">
       {/* Search Box */}
       <div className="mb-[30px]">
         <input

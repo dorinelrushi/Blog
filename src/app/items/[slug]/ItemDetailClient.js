@@ -75,7 +75,7 @@ export default function ItemDetailClient({ item }) {
         const codeContent = domToReact(domNode.children);
 
         return (
-          <div className="my-4">
+          <div className="my-4 ">
             <SyntaxHighlighter
               language={language} // Dynamically set the language for syntax highlighting
               style={coyWithoutShadows} // Use a clean, simple syntax highlighting style
@@ -118,7 +118,7 @@ export default function ItemDetailClient({ item }) {
   }, [item.description]);
 
   return (
-    <div>
+    <div className="mt-[20px]">
       {/* Display blog post image */}
       {item.imageUrl && (
         <Image

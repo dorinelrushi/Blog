@@ -11,10 +11,30 @@ function SectionWorks() {
 
   return (
     <div>
-      <div className="w-[90%] lg:w-[56%] m-auto">
-        <h2 className="text-[30px] lg:text-[70px] font-extrabold mt-[25px] text-center">
-          How It Will Work
-        </h2>
+      <div className="bg-[#2281FD] py-[120px] mb-[190px] relative ">
+        <div>
+          <h2 className="text-[30px] lg:text-[60px]   text-center text-[white]">
+            How It Will Work
+          </h2>
+          <div className="absolute left-[50%] translate-x-[-50%] bottom-[-35px] shadow-lg  rounded-[60px] bg-[#fffdfd] py-[10px] px-[20px] flex  justify-center gap-[10px] mt-[20px]">
+            <div className="relative left-[-10px]">
+              <Image
+                src="/devProm.svg"
+                width={50}
+                height={100}
+                alt="dsad"
+                className="object-fit"
+              />
+              <div className="w-[10px] h-[10px] bg-[#25d876] absolute right-[7px] bottom-[3px] rounded-[60px]"></div>
+            </div>
+            <div className="relative left-[-10px]">
+              <p className="text-black font-bold">DevPromote</p>
+              <p className="text-[15px] text-[#0000005d]">Company </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="w-[90%] lg:w-[56%] m-auto ">
         {/* section one */}
         <div className="flex flex-col sm:flex-col lg:flex-row mt-[100px] justify-between gap-[50px]">
           <div>
@@ -83,7 +103,7 @@ function SectionWorks() {
         </div>
 
         {/* Extra content with show more functionality */}
-        <div className="mt-[100px]">
+        <div className="mt-[100px] mb-[60px]">
           <h2
             className="text-[#2380FA] text-[26px] lg:text-[60px] max-w-[700px] font-semibold leading-[38px]
            lg:leading-[73px]"

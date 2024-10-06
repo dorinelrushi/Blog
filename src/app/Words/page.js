@@ -165,7 +165,7 @@ export default function Words() {
         intent: "capture",
       }}
     >
-      <div className="container mx-auto p-8 bg-[#fff] shadow-2xl rounded-lg">
+      <div className="container mx-auto p-8 bg-[#fff] shadow-2xl rounded-lg mt-[30px]">
         {isLoaded && isSignedIn && (
           <>
             <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
@@ -254,7 +254,7 @@ export default function Words() {
                     )}
                     <div className="mt-4">
                       <button
-                        className="bg-[#2ac283] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
+                        className="bg-[#2281FD] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
                         onClick={() => handleShowPayPal(wordItem._id)}
                       >
                         Promote
@@ -263,7 +263,7 @@ export default function Words() {
                     {/* Show Buyers button for mobile */}
                     <div className="mt-4">
                       <button
-                        className="flex items-center gap-[5px] text-[#2ac283] border border-[#2ac28386] bg-[#2ac28318] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
+                        className="flex items-center gap-[5px] text-[#357bd6] border border-[#357bd6] bg-[#2281fd11] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
                         onClick={() => handleFetchBuyers(wordItem._id)}
                       >
                         Show Buyers <GoTriangleDown />
@@ -343,7 +343,7 @@ export default function Words() {
                         </td>
                         <td className="px-4 py-4">
                           <button
-                            className="bg-[#2ac283] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
+                            className="bg-[#2281FD] text-white py-2 px-4 rounded-[5px] transition-all duration-300"
                             onClick={() => handleShowPayPal(wordItem._id)}
                           >
                             Promote
@@ -352,7 +352,7 @@ export default function Words() {
                         <td className="px-4 py-4">
                           <div className="relative inline-block">
                             <button
-                              className="flex items-center gap-[5px] text-[#2ac283] border border-[#2ac28386] bg-[#2ac28318] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
+                              className="flex items-center gap-[5px] text-[#357bd6] border border-[#2281FD] bg-[#2281fd11] outline-none py-2 px-4 rounded-[5px] transition-all duration-300"
                               onClick={() => handleFetchBuyers(wordItem._id)}
                             >
                               Show Buyers <GoTriangleDown />

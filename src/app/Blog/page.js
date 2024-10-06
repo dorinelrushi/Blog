@@ -54,7 +54,7 @@ function Page() {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 mt-[30px]">
       <div className="text-center m-auto mb-[65px]">
         <h1 className="text-[30px]  lg:text-[45px] font-bold mb-[15px] text-[#1f1f1f]">
           My Latest Blog 🔥

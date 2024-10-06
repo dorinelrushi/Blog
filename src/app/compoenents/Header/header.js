@@ -1,17 +1,48 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
+import React, { useState, useRef, useEffect } from "react";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import React from "react";
-import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
+import { FaAngleDown } from "react-icons/fa";
 
-async function Header() {
-  const user = await currentUser();
+function Header() {
+  const { isSignedIn } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Desktop dropdown state
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false); // Mobile dropdown state
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const toggleMobileDropdown = () =>
+    setIsMobileDropdownOpen(!isMobileDropdownOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
 
   const menuItems = [
     {
       label: "Home",
       path: "/",
       show: true,
+    },
+    {
+      label: "About",
+      show: true,
+      dropdown: [
+        {
+          label: "Our Mission",
+          path: "/OurMission",
+          show: true,
+        },
+      ],
     },
     {
       label: "Talent Board",
@@ -26,18 +57,17 @@ async function Header() {
     {
       label: "My Blog",
       path: "/Blog",
-      show: user,
+      show: isSignedIn,
     },
     {
       label: "Add Blog",
       path: "/AddBlog",
-      show: user,
+      show: isSignedIn,
     },
-
     {
       label: "Login",
       path: "/sign-in",
-      show: !user,
+      show: !isSignedIn,
     },
   ];
 
@@ -49,12 +79,41 @@ async function Header() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center text-[16px] gap-[35px]">
+        <div className="hidden md:flex items-center text-[16px] gap-[35px] relative">
           {menuItems.map((item) =>
             item.show ? (
-              <Link key={item.label} href={item.path}>
-                {item.label}
-              </Link>
+              <div key={item.label} className="relative">
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className="focus:outline-none flex items-center gap-1"
+                      onClick={toggleDropdown}
+                    >
+                      {item.label} <FaAngleDown />
+                    </button>
+                    {isDropdownOpen && (
+                      <div
+                        className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10"
+                        ref={dropdownRef}
+                      >
+                        {item.dropdown.map((subItem) =>
+                          subItem.show ? (
+                            <Link
+                              key={subItem.label}
+                              href={subItem.path}
+                              className="block px-4 py-2 text-black hover:bg-gray-100 rounded-md"
+                            >
+                              {subItem.label}
+                            </Link>
+                          ) : null
+                        )}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link href={item.path}>{item.label}</Link>
+                )}
+              </div>
             ) : null
           )}
           <UserButton afterSignOutUrl="/" />
@@ -84,8 +143,34 @@ async function Header() {
             <ul className="flex flex-col items-center py-4 list-none">
               {menuItems.map((item) =>
                 item.show ? (
-                  <li key={item.label} className="py-2">
-                    <Link href={item.path}>{item.label}</Link>
+                  <li key={item.label} className="py-2 relative">
+                    {item.dropdown ? (
+                      <>
+                        <button
+                          onClick={toggleMobileDropdown}
+                          className="focus:outline-none flex items-center gap-1"
+                        >
+                          {item.label} <FaAngleDown />
+                        </button>
+                        {isMobileDropdownOpen && (
+                          <div className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10">
+                            {item.dropdown.map((subItem) =>
+                              subItem.show ? (
+                                <Link
+                                  key={subItem.label}
+                                  href={subItem.path}
+                                  className="block px-4 py-2 text-black hover:bg-gray-100"
+                                >
+                                  {subItem.label}
+                                </Link>
+                              ) : null
+                            )}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link href={item.path}>{item.label}</Link>
+                    )}
                   </li>
                 ) : null
               )}
