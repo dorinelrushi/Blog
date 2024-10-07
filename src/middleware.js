@@ -8,6 +8,8 @@ export default authMiddleware({
     "/HowWorks",
     "/About",
     "/OurMission",
+    "/Share",
+    "/api/send-email",
   ], // Public access to homepage and blog post slugs
 });
 
