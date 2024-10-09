@@ -31,29 +31,28 @@ export default function RootLayout({ children }) {
 
       <html lang="en">
         <body className={inter.className}>
-          <Header />
           <div>
+            <Header />
             {children}
             <Analytics />
           </div>
-
-          {/* Google AdSense Ad Unit */}
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <ins
-              className="adsbygoogle"
-              style={{ display: "block" }}
-              data-ad-client="ca-pub-7525157885187689"
-              data-ad-slot="8309374124"
-              data-ad-format="auto"
-              data-full-width-responsive="true"
-            ></ins>
-            <Script id="ads-init" strategy="lazyOnload">
-              {`
+        </body>
+        {/* Google AdSense Ad Unit */}
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <ins
+            className="adsbygoogle"
+            style={{ display: "block" }}
+            data-ad-client="ca-pub-7525157885187689"
+            data-ad-slot="8309374124"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <Script id="ads-init" strategy="lazyOnload">
+            {`
                 (adsbygoogle = window.adsbygoogle || []).push({});
               `}
-            </Script>
-          </div>
-        </body>
+          </Script>
+        </div>
       </html>
     </ClerkProvider>
   );
