@@ -22,17 +22,36 @@ export default function RootLayout({ children }) {
       }}
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
+      {/* Google AdSense Script */}
       <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7525157885187689"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       />
+
       <html lang="en">
         <body className={inter.className}>
           <Header />
           <div>
             {children}
             <Analytics />
+          </div>
+
+          {/* Google AdSense Ad Unit */}
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <ins
+              className="adsbygoogle"
+              style={{ display: "block" }}
+              data-ad-client="ca-pub-7525157885187689"
+              data-ad-slot="8309374124"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <Script id="ads-init" strategy="lazyOnload">
+              {`
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              `}
+            </Script>
           </div>
         </body>
       </html>
