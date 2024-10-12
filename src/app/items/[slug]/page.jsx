@@ -25,7 +25,7 @@ export default async function ItemDetail({ params }) {
   };
 
   return (
-    <div className="blogPost w-[99%] lg:w-[65%] mx-auto p-6">
+    <div className="blogPost flex w-[99%] lg:w-[56%] mx-auto p-6">
       {/* Pass the item and author data as plain objects to the client component */}
       <ItemDetailClient item={item} author={authorPlain} />
     </div>

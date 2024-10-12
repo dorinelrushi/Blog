@@ -126,7 +126,7 @@ export default function ItemDetailClient({ item }) {
           alt={item.title}
           width={1000}
           height={1000}
-          className="h-auto w-full rounded-md mb-4" // Add margin at the bottom
+          className="h-auto  rounded-md mb-[60px]" // Add margin at the bottom
         />
       )}
 
