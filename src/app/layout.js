@@ -23,7 +23,11 @@ export default function RootLayout({ children }) {
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       {/* Google AdSense Script */}
-
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7525157885187689"
+        crossorigin="anonymous"
+      />
       <html lang="en">
         <body className={inter.className}>
           <div>
