@@ -38,6 +38,21 @@ export default function RootLayout({ children }) {
             <Analytics />
           </div>
           {/* Google AdSense Ad Unit */}
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <ins
+              className="adsbygoogle"
+              style={{ display: "block" }}
+              data-ad-client="ca-pub-7525157885187689"
+              data-ad-slot="4189509172"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            ></ins>
+            <Script id="ads-init" strategy="lazyOnload">
+              {`
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+              `}{" "}
+            </Script>
+          </div>
         </body>
       </html>
     </ClerkProvider>
