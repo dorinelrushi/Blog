@@ -138,7 +138,7 @@ export default function Share() {
         </div>
       </div>
       {/* Before/After Image Slider Section */}|
-      <div className="flex w-[100%] flex-col lg:flex-row lg:w-[56%] m-auto gap-[10px]">
+      <div className=" w-[100%]">
         <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
           <ReactCompareImage
             leftImage="./Port2.jpg" // Use the paths to your uploaded images
@@ -154,7 +154,7 @@ export default function Share() {
           />
         </div>
       </div>
-      <div className="flex w-[100%] flex-col lg:flex-row lg:w-[56%] m-auto gap-[10px]">
+      <div className=" w-[100%]">
         <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
           <ReactCompareImage
             leftImage="./Port5.jpg" // Use the paths to your uploaded images
