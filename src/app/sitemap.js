@@ -3,7 +3,7 @@ import { getAllItems } from "@/actions";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com"; // Replace with your base URL
+  const baseUrl = "https://promote.online"; // Replace with your base URL
   const items = await getAllItems(); // Fetch all items from the database
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
