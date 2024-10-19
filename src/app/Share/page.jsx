@@ -138,30 +138,24 @@ export default function Share() {
         </div>
       </div>
       {/* Before/After Image Slider Section */}|
-      <div className=" w-[100%]">
-        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
-          <ReactCompareImage
-            leftImage="./Port2.jpg" // Use the paths to your uploaded images
-            rightImage="./Port1.jpg"
-            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-          />
-        </div>
-        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
-          <ReactCompareImage
-            leftImage="./Port3.jpg" // Use the paths to your uploaded images
-            rightImage="./Port4.jpg"
-            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-          />
-        </div>
-      </div>
-      <div className=" w-[100%]">
-        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
-          <ReactCompareImage
-            leftImage="./Port5.jpg" // Use the paths to your uploaded images
-            rightImage="./Port6.jpg"
-            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-          />
-        </div>
+      <div className=" w-[90%] flex flex-col gap-[10px] lg:w-[56%] m-auto">
+        <ReactCompareImage
+          leftImage="/Port2.jpg" // Use the paths to your uploaded images
+          rightImage="/Port1.jpg"
+          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+        />
+
+        <ReactCompareImage
+          leftImage="/Port3.jpg" // Use the paths to your uploaded images
+          rightImage="/Port4.jpg"
+          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+        />
+
+        <ReactCompareImage
+          leftImage="/Port5.jpg" // Use the paths to your uploaded images
+          rightImage="/Port6.jpg"
+          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+        />
       </div>
     </div>
   );
