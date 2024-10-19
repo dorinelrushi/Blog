@@ -5,20 +5,8 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: "35mb", // You can adjust the size limit as needed
+      bodySizeLimit: "25mb", // You can adjust the size limit as needed
     },
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/sitemap",
-      },
-      {
-        source: "/robots.txt",
-        destination: "/robots",
-      },
-    ];
   },
 };
 
