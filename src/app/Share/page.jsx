@@ -1,6 +1,7 @@
 "use client"; // Add this since you're using Next.js with App Router, and form submission requires client-side handling.
 
 import { useState } from "react";
+import ReactCompareImage from "react-compare-image"; // Import React Compare Image for the before/after slider
 
 export default function Share() {
   const [formData, setFormData] = useState({
@@ -44,6 +45,7 @@ export default function Share() {
 
   return (
     <div>
+      {/* Form Section */}
       <div className="bg-[#2281FD] py-[120px] mb-[150px] relative">
         <div>
           <h2 className="text-[30px] lg:text-[60px] text-center text-white">
@@ -71,8 +73,7 @@ export default function Share() {
           </div>
         </div>
       </div>
-
-      {/* Form Section */}
+      {/* Form */}
       <div className="w-[90%] lg:w-[56%] m-auto mb-[100px]">
         <div>
           <h2 className="mb-[30px] text-[30px] ">Fill the Form</h2>
@@ -115,7 +116,7 @@ export default function Share() {
               value={formData.url}
               onChange={handleChange}
               required
-            />{" "}
+            />
             <br />
             <textarea
               name="description"
@@ -134,6 +135,32 @@ export default function Share() {
             </button>
           </form>
           {message && <p className="mt-4 text-[#31a0eb]">{message}</p>}
+        </div>
+      </div>
+      {/* Before/After Image Slider Section */}|
+      <div className="flex w-[100%] flex-col lg:flex-row lg:w-[56%] m-auto gap-[10px]">
+        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
+          <ReactCompareImage
+            leftImage="/Port2.jpg" // Use the paths to your uploaded images
+            rightImage="/Port1.jpg"
+            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+          />
+        </div>
+        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
+          <ReactCompareImage
+            leftImage="/Port3.jpg" // Use the paths to your uploaded images
+            rightImage="/Port4.jpg"
+            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+          />
+        </div>
+      </div>
+      <div className="flex w-[100%] flex-col lg:flex-row lg:w-[56%] m-auto gap-[10px]">
+        <div className="w-[90%] lg:w-[56%] m-auto mb-[30px]">
+          <ReactCompareImage
+            leftImage="/Port5.jpg" // Use the paths to your uploaded images
+            rightImage="/Port6.jpg"
+            sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
+          />
         </div>
       </div>
     </div>
