@@ -141,13 +141,13 @@ export default function Share() {
       <div className=" w-[90%] flex flex-col gap-[10px] lg:w-[56%] m-auto">
         <ReactCompareImage
           leftImage="/Port2.jpg" // Use the paths to your uploaded images
-          rightImage="/Port1.jpg"
+          rightImage="/port1.jpg"
           sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
         />
 
         <ReactCompareImage
           leftImage="/Port3.jpg" // Use the paths to your uploaded images
-          rightImage="/Port4.jpg"
+          rightImage="/port4.jpg"
           sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
         />
 
