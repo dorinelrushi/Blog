@@ -4,7 +4,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./compoenents/Header/header";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
