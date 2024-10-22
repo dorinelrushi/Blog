@@ -53,6 +53,20 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <div>
             <Head>
+              <script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=G-Q9Z5872YNG"
+              ></script>
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q9Z5872YNG');
+            `,
+                }}
+              />
               {/* Twitter Card metadata */}
               <meta name="twitter:card" content="summary_large_image" />
               <meta
