@@ -53,10 +53,10 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <div>
             <Head>
-              <script
+              <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-Q9Z5872YNG"
-              ></script>
+              />
               <Script
                 dangerouslySetInnerHTML={{
                   __html: `
