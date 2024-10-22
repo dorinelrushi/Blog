@@ -49,24 +49,24 @@ export default function RootLayout({ children }) {
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7525157885187689"
         crossorigin="anonymous"
       />
-      <html lang="en">
-        <body className={inter.className}>
-          <div>
-            <Head>
-              <Script
-                async
-                src="https://www.googletagmanager.com/gtag/js?id=G-Q9Z5872YNG"
-              />
-              <Script
-                dangerouslySetInnerHTML={{
-                  __html: `
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-Q9Z5872YNG"
+      />
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-Q9Z5872YNG');
             `,
-                }}
-              />
+        }}
+      />
+      <html lang="en">
+        <body className={inter.className}>
+          <div>
+            <Head>
               {/* Twitter Card metadata */}
               <meta name="twitter:card" content="summary_large_image" />
               <meta
