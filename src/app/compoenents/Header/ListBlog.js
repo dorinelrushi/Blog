@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns"; // For date formatting
 import Image from "next/image"; // For optimized image handling in Next.js
 import Link from "next/link"; // For internal linking in Next.js
+import AdIframe from "../AdIframe";
 
 function ListBlog() {
   const [items, setItems] = useState([]);
@@ -131,6 +132,7 @@ function ListBlog() {
                     </button>
                   </li>
                 </ul>
+                <AdIframe />
               </div>
             )}
           </div>
