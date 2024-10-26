@@ -67,6 +67,10 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <div>
             <Head>
+              <meta
+                name="google-site-verification"
+                content="lALUSjFAU671QZjns2bN_i-g4K2v-aWbF_QP0nek9qE"
+              />
               {/* Twitter Card metadata */}
               <meta name="twitter:card" content="summary_large_image" />
               <meta

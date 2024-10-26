@@ -22,7 +22,7 @@ function SectionWorks() {
                 src="/devProm.svg"
                 width={50}
                 height={100}
-                alt="dsad"
+                alt="dev promote"
                 className="object-fit"
               />
               <div className="w-[10px] h-[10px] bg-[#25d876] absolute right-[7px] bottom-[3px] rounded-[60px]"></div>
@@ -52,7 +52,7 @@ function SectionWorks() {
               src="/cv.svg"
               width={600}
               height={1000}
-              alt="dorinel"
+              alt="dev promote"
               className="object object-cover"
             />
           </div>
@@ -64,7 +64,7 @@ function SectionWorks() {
               src="/blogs.svg"
               width={600}
               height={1000}
-              alt="dorinel"
+              alt="dev promote"
               className="object object-cover"
             />
           </div>
@@ -96,7 +96,7 @@ function SectionWorks() {
               src="/share.svg"
               width={600}
               height={1000}
-              alt="dorinel"
+              alt="dev promote"
               className="object object-cover"
             />
           </div>

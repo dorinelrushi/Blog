@@ -95,7 +95,7 @@ function Header() {
     <div className="bg-[#ffffff] py-[23px]   relative z-[9999]">
       <div className="flex w-[80%] justify-between items-center m-auto">
         <Link href="/">
-          <Image src="/dev.svg" width={200} height={100} alt="Logo" />
+          <Image src="/dev.svg" width={200} height={100} alt="dev promote" />
         </Link>
 
         {/* Desktop Menu */}

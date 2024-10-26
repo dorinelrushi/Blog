@@ -34,6 +34,7 @@ export default function ItemDetailClient({ item }) {
       "as",
       "be",
       "an",
+      "i",
     ]; // Add more stop words as needed
     const words = text
       .toLowerCase()

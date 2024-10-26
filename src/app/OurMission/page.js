@@ -13,7 +13,12 @@ function OurMission() {
             </h2>
             <div className="flex py-[10px] w-[240px] items-center rounded-[50px] px-[10px] mt-[39px] bg-[white] gap-[15px]">
               <div>
-                <Image src="/dori.png" width={50} height={100} alt="dori" />
+                <Image
+                  src="/dori.png"
+                  width={50}
+                  height={100}
+                  alt="dev promote"
+                />
               </div>
               <div>
                 <p className="text-[18px] font-bold ">Dorinel Rushi</p>
@@ -60,7 +65,7 @@ function OurMission() {
                 src="/Algorithm.svg"
                 width={1006}
                 height={100}
-                alt="devpromote"
+                alt="dev promote"
               />
             </div>
 
