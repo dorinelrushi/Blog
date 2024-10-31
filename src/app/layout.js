@@ -67,6 +67,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <div>
             <Head>
+              <meta property="og:image" content="/web.png" />
               <meta
                 name="google-site-verification"
                 content="lALUSjFAU671QZjns2bN_i-g4K2v-aWbF_QP0nek9qE"
@@ -95,14 +96,7 @@ export default function RootLayout({ children }) {
                 content="Dev Promote helps you to find a job and promote free"
               />
               <meta property="og:type" content="article" />
-              <meta
-                property="og:url"
-                content="https://www.devpromote.online/Algorithm.svg"
-              />
-              <meta
-                property="og:image"
-                content="https://www.devpromote.online/Algorithm.svghttps://www.devpromote.online/Algorithm.svg"
-              />
+
               <meta property="og:locale" content="en_US" />
             </Head>
             <div>
