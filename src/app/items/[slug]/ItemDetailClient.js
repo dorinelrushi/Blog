@@ -5,6 +5,7 @@ import Image from "next/image";
 import parse, { domToReact } from "html-react-parser"; // To render HTML content
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"; // Code syntax highlighting
 import { coyWithoutShadows } from "react-syntax-highlighter/dist/cjs/styles/prism"; // Clean, simple style
+import Head from "next/head";
 
 export default function ItemDetailClient({ item }) {
   const [mostFrequentWord, setMostFrequentWord] = useState("");
@@ -120,6 +121,11 @@ export default function ItemDetailClient({ item }) {
 
   return (
     <div className="mt-[20px]">
+      <Head>
+        <meta name="description" content={item.description.substring(0, 160)} />
+        <meta property="og:title" content={item.title} />
+        <meta property="og:image" content={item.imageUrl} />
+      </Head>
       {/* Display blog post image */}
       {item.imageUrl && (
         <Image
