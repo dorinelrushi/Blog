@@ -6,6 +6,7 @@ import parse, { domToReact } from "html-react-parser"; // To render HTML content
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"; // Code syntax highlighting
 import { coyWithoutShadows } from "react-syntax-highlighter/dist/cjs/styles/prism"; // Clean, simple style
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 export default function ItemDetailClient({ item }) {
   const [mostFrequentWord, setMostFrequentWord] = useState("");
@@ -121,11 +122,24 @@ export default function ItemDetailClient({ item }) {
 
   return (
     <div className="mt-[20px]">
-      <Head>
-        <meta name="description" content={item.description.substring(0, 160)} />
-        <meta property="og:title" content={item.title} />
-        <meta property="og:image" content={`/${item.imageUrl}`} />
-      </Head>
+      <NextSeo
+        title="Dev Promote"
+        description="Dev Promote the best site"
+        openGraph={{
+          type: `${item.title}`,
+          article: {
+            tags: ["dev promote", "Dev Promote", "devpromote", "Dev"],
+          },
+          url: "https://www.devpromote.online/",
+          images: {
+            url: `${item.imageUrl}`,
+            width: 850,
+            height: 650,
+            alt: `${item.title}`,
+          },
+          site_name: "devpromote",
+        }}
+      />
       {/* Display blog post image */}
       {item.imageUrl && (
         <Image
