@@ -124,7 +124,7 @@ export default function ItemDetailClient({ item }) {
       <Head>
         <meta name="description" content={item.description.substring(0, 160)} />
         <meta property="og:title" content={item.title} />
-        <meta property="og:image" content={item.imageUrl} />
+        <meta property="og:image" content={`/${item.imageUrl}`} />
       </Head>
       {/* Display blog post image */}
       {item.imageUrl && (
