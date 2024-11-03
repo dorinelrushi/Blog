@@ -1,5 +1,6 @@
 "use client"; // Add this since you're using Next.js with App Router, and form submission requires client-side handling.
 
+import Head from "next/head";
 import { useState } from "react";
 import ReactCompareImage from "react-compare-image"; // Import React Compare Image for the before/after slider
 
@@ -45,6 +46,13 @@ export default function Share() {
 
   return (
     <div>
+      <Head>
+        <title>Dev Promote | Share your portfolio</title>
+        <meta
+          name="description"
+          content="Share with us your portfolio to fix your life"
+        ></meta>
+      </Head>
       {/* Form Section */}
       <div className="bg-[#2281FD] py-[120px] mb-[150px] relative">
         <div>

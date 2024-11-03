@@ -9,8 +9,9 @@ import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Dev Promote",
-  description: "Promoting Talents",
+  title: "Dev Promote | Promote yourself",
+  description:
+    "Promoting Talents | Learning Coding | Become the best developer ",
   keywords: [
     "dev",
     "promote",
