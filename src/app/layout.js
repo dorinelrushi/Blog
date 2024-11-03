@@ -94,39 +94,6 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={inter.className}>
           <div>
-            <Head>
-              <meta property="og:image" content="/web.png" />
-              <meta
-                name="google-site-verification"
-                content="lALUSjFAU671QZjns2bN_i-g4K2v-aWbF_QP0nek9qE"
-              />
-              {/* Twitter Card metadata */}
-              <meta name="twitter:card" content="summary_large_image" />
-              <meta
-                name="twitter:title"
-                content="How to Create a Dynamic Sitemap in Next.js for Better SEO"
-              />
-              <meta
-                name="twitter:description"
-                content="A step-by-step guide to improve your Next.js website's SEO with a dynamic sitemap."
-              />
-              <meta name="twitter:image" content="https://devpromote.online" />
-
-              {/* Canonical URL */}
-              <link rel="canonical" href="https://devpromote.online" />
-              <meta
-                name="google-site-verification"
-                content="lALUSjFAU671QZjns2bN_i-g4K2v-aWbF_QP0nek9qE"
-              />
-              <meta property="og:title" content="Dev Promote is the future" />
-              <meta
-                property="og:description"
-                content="Dev Promote helps you to find a job and promote free"
-              />
-              <meta property="og:type" content="article" />
-
-              <meta property="og:locale" content="en_US" />
-            </Head>
             <div>
               <Header />
             </div>
