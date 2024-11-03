@@ -53,6 +53,12 @@ export const metadata = {
     description: "Promoting Talents",
     images: ["/web.png"], // Replace with your actual image path
   },
+  other: [
+    {
+      name: "google-site-verification",
+      content: "lALUSjFAU671QZjns2bN_i-g4K2v-aWbF_QP0nek9qE",
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
