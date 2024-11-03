@@ -5,10 +5,6 @@ import React from "react";
 function OurMission() {
   return (
     <div>
-      <Head>
-        <title>Dev Promote | Our Mission</title>
-        <meta name="description" content="We help developer find a job"></meta>
-      </Head>
       <div>
         <div className="bg-[#2281FD] py-[60px] lg:py-[120px]">
           <div className="w-[90%] lg:w-[56%] m-auto">

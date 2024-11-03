@@ -166,11 +166,6 @@ export default function Words() {
         intent: "capture",
       }}
     >
-      <Head>
-        <title>Dev Promote | Talent Board</title>
-        <meta name="description" content="Talents Promote"></meta>
-      </Head>
-
       <div className="container mx-auto p-8 bg-[#fff] shadow-2xl rounded-lg mt-[30px]">
         {isLoaded && isSignedIn && (
           <>

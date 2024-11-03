@@ -46,13 +46,6 @@ export default function Share() {
 
   return (
     <div>
-      <Head>
-        <title>Dev Promote | Share your portfolio</title>
-        <meta
-          name="description"
-          content="Share with us your portfolio to fix your life"
-        ></meta>
-      </Head>
       {/* Form Section */}
       <div className="bg-[#2281FD] py-[120px] mb-[150px] relative">
         <div>
