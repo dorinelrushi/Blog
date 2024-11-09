@@ -4,7 +4,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./compoenents/Header/header";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,47 +11,18 @@ export const metadata = {
   title: "Dev Promote | Promote yourself",
   description:
     "Promoting Talents | Learning Coding | Become the best developer ",
-  keywords: [
-    "dev",
-    "promote",
-    "dev promote",
-    "jobs",
-    "blog",
-    "ai",
-    "web dev",
-    "dev",
-    "chatgpt",
-    "next js",
-    "coding",
-    "photoshop",
-    "blockchain",
-    "graphic designer",
-    "Dev Promote",
-    "AI",
-  ],
 
   openGraph: {
-    title: "Dev Promote",
-    description: "Promoting Talents",
-    url: "https://devpromote.online/",
-    siteName: "Dev Promote",
     images: [
       {
         url: "/web.png", // Replace with your actual image path
-        width: 1200,
+        width: 1000,
         height: 630,
         alt: "Dev Promote - Promoting Talents",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Dev Promote",
-    description: "Promoting Talents",
-    images: ["/web.png"], // Replace with your actual image path
-  },
+
   other: [
     {
       name: "google-site-verification",
