@@ -134,7 +134,6 @@ function ListBlog() {
               </div>
             )}
           </div>
-
           {/* Tags for larger screens */}
           <div className="hidden lg:block">
             <ul className="list-none">
