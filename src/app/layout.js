@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./compoenents/Header/header";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,6 +62,11 @@ export default function RootLayout({ children }) {
             `,
         }}
       />
+      <Script
+        src="https://cdn.userway.org/widget.js"
+        data-account="cIsC2ofFXp"
+      />
+
       <html lang="en">
         <body className={inter.className}>
           <div>
