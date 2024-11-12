@@ -1,38 +1,17 @@
 "use client";
+// pages/trending.js
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
-
-export default function TrendingPage() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchTrendingData = async () => {
-      try {
-        const response = await fetch(
-          "https://api.coingecko.com/api/v3/asset_platforms?x_cg_demo_api_key=CG-RXhcM4pqRLmh8Uu9Hy7rFY1j"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const json = await response.json();
-        setData(json);
-      } catch (error) {
-        console.error("Error fetching trending data:", error);
-        setError(error.message);
-      }
-    };
-
-    fetchTrendingData();
-  }, []);
+export default function TrendingPage({ initialData, error }) {
+  const [data, setData] = useState(initialData);
 
   if (error) return <p className="text-center text-red-600">{error}</p>;
   if (!data) return <p className="text-center text-gray-500">Loading...</p>;
 
   return (
     <div className="w-[90%] lg:w-[75%] mx-auto mt-8">
-      {/* Seksioni Informues */}
-      <div className=" p-6 rounded-lg mb-8  text-gray-800">
+      {/* Informative Section */}
+      <div className="p-6 rounded-lg mb-8 text-gray-800">
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Why This Data Matters
         </h2>
@@ -44,9 +23,7 @@ export default function TrendingPage() {
         </p>
       </div>
 
-      {/* Titulli Kryesor */}
-
-      {/* Tabela e të dhënave për ekranet e mëdha */}
+      {/* Data Table for Large Screens */}
       <div className="hidden lg:block">
         <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden bg-white shadow-md">
           <thead className="bg-gray-100 border-b">
@@ -85,7 +62,7 @@ export default function TrendingPage() {
                     <img
                       src={platform.image.small}
                       alt={platform.name}
-                      className="w-10 h-10  "
+                      className="w-10 h-10"
                     />
                   ) : (
                     "No Image"
@@ -97,7 +74,7 @@ export default function TrendingPage() {
         </table>
       </div>
 
-      {/* Tabela e të dhënave për ekranet e vogla */}
+      {/* Data Display for Small Screens */}
       <div className="lg:hidden">
         {data.map((platform, index) => (
           <div
@@ -120,7 +97,7 @@ export default function TrendingPage() {
                 <img
                   src={platform.image.small}
                   alt={platform.name}
-                  className="w-12 h-12  rounded-full"
+                  className="w-12 h-12 rounded-full"
                 />
               ) : (
                 <p className="text-gray-500">No Image</p>
@@ -131,4 +108,22 @@ export default function TrendingPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const res = await fetch(
+      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=f01ebef32b6047a29ac24dce2682d42a"
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const initialData = await res.json();
+    return { props: { initialData } };
+  } catch (error) {
+    console.error("Error fetching trending data:", error);
+    return { props: { initialData: null, error: error.message } };
+  }
 }
