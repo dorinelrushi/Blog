@@ -9,6 +9,7 @@ export default authMiddleware({
     "/Asset",
     "/Derivatives",
     "/not-found",
+    "/CryptoNews",
   ], // Public access to homepage and blog post slugs
 });
 

@@ -50,8 +50,13 @@ function Header() {
       show: true,
     },
     {
-      label: "Trading",
+      label: "Crypto News",
       dropdown: [
+        {
+          label: "Bitcoin News",
+          path: "/CryptoNews",
+          show: true,
+        },
         {
           label: "Derivatives",
           path: "/Derivatives",
