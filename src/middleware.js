@@ -4,12 +4,11 @@ export default authMiddleware({
   publicRoutes: [
     "/",
     "/items/:slug*",
-    "/Words",
-    "/HowWorks",
-    "/About",
-    "/OurMission",
-    "/Share",
+    "/Contact",
     "/api/send-email",
+    "/Asset",
+    "/Derivatives",
+    "/not-found",
   ], // Public access to homepage and blog post slugs
 });
 

@@ -4,12 +4,11 @@ import Head from "next/head";
 import { useState } from "react";
 import ReactCompareImage from "react-compare-image"; // Import React Compare Image for the before/after slider
 
-export default function Share() {
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
     email: "",
-    url: "", // Portfolio link is handled by this key
     description: "",
   });
 
@@ -49,12 +48,8 @@ export default function Share() {
       {/* Form Section */}
       <div className="bg-[#2281FD] py-[120px] mb-[150px] relative">
         <div>
-          <h2 className="text-[30px] lg:text-[60px] text-center text-white">
-            Share Your{" "}
-            <span className="font-bold">
-              <span className="text-[#1c4185]">{"</"}</span>Portfolio
-              <span className="text-[#1c4185]">{">"}</span>
-            </span>
+          <h2 className="text-[30px] lg:text-[60px] text-center font-bold text-white">
+            Contact Me
           </h2>
           <div className="absolute left-[50%] translate-x-[-50%] bottom-[-35px] shadow-lg rounded-[60px] bg-white py-[10px] px-[20px] flex justify-center gap-[10px] mt-[20px]">
             <div className="relative left-[-10px]">
@@ -109,20 +104,12 @@ export default function Share() {
               onChange={handleChange}
               required
             />
-            <input
-              type="url"
-              className="w-[100%] mb-[30px] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
-              name="url" // Updated to 'url' to match the state key
-              placeholder="Portfolio Link"
-              value={formData.url}
-              onChange={handleChange}
-              required
-            />
+
             <br />
             <textarea
               name="description"
               className="w-[100%] resize-none mb-[30px] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
-              placeholder="Write about yourself"
+              placeholder="Write Something..."
               rows={8}
               value={formData.description}
               onChange={handleChange}
@@ -137,26 +124,6 @@ export default function Share() {
           </form>
           {message && <p className="mt-4 text-[#31a0eb]">{message}</p>}
         </div>
-      </div>
-      {/* Before/After Image Slider Section */}|
-      <div className=" w-[90%] flex flex-col gap-[10px] lg:w-[56%] m-auto">
-        <ReactCompareImage
-          leftImage="/port2.jpg" // Use the paths to your uploaded images
-          rightImage="/Port1.jpg"
-          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-        />
-
-        <ReactCompareImage
-          leftImage="/Port3.jpg" // Use the paths to your uploaded images
-          rightImage="/port4.jpg"
-          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-        />
-
-        <ReactCompareImage
-          leftImage="/Port5.jpg" // Use the paths to your uploaded images
-          rightImage="/Port6.jpg"
-          sliderPositionPercentage={0.5} // Set default position of the slider to be 50%
-        />
       </div>
     </div>
   );

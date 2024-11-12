@@ -1,39 +1,40 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { FaAngleDown } from "react-icons/fa";
-import { FiMenu, FiX } from "react-icons/fi"; // Import icons for hamburger and close
+import { FiMenu, FiX } from "react-icons/fi";
 
 function Header() {
   const { isSignedIn } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Desktop dropdown state
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Desktop dropdown state for Trading menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
-  const [isMobileAboutDropdownOpen, setIsMobileAboutDropdownOpen] =
-    useState(false); // Mobile About dropdown state
+  const [isMobileTradingDropdownOpen, setIsMobileTradingDropdownOpen] =
+    useState(false); // Mobile Trading dropdown state
   const dropdownRef = useRef(null);
 
-  // Toggle desktop dropdown
+  // Toggle desktop Trading dropdown
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
-  // Toggle mobile menu and reset the About dropdown when menu is closed
+  // Toggle mobile menu and reset the Trading dropdown when menu is closed
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (isMobileMenuOpen) {
-      setIsMobileAboutDropdownOpen(false); // Close dropdown when menu closes
+      setIsMobileTradingDropdownOpen(false); // Close Trading dropdown when menu closes
     }
   };
 
-  // Toggle mobile About dropdown
-  const toggleMobileAboutDropdown = () =>
-    setIsMobileAboutDropdownOpen(!isMobileAboutDropdownOpen);
+  // Toggle mobile Trading dropdown
+  const toggleMobileTradingDropdown = () =>
+    setIsMobileTradingDropdownOpen(!isMobileTradingDropdownOpen);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false); // Close desktop dropdown on outside click
-        setIsMobileAboutDropdownOpen(false); // Close mobile About dropdown on outside click
+        setIsMobileTradingDropdownOpen(false); // Close mobile Trading dropdown on outside click
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -49,29 +50,24 @@ function Header() {
       show: true,
     },
     {
-      label: "About",
-      show: true,
+      label: "Trading",
       dropdown: [
         {
-          label: "Our Mission",
-          path: "/OurMission",
+          label: "Derivatives",
+          path: "/Derivatives",
+          show: true,
+        },
+        {
+          label: "Asset",
+          path: "/Asset",
           show: true,
         },
       ],
-    },
-    {
-      label: "Talent Board",
-      path: "/Words",
       show: true,
     },
     {
-      label: "How it Works",
-      path: "/HowWorks",
-      show: true,
-    },
-    {
-      label: "Share",
-      path: "/Share",
+      label: "Contact",
+      path: "/Contact",
       show: true,
     },
     {
@@ -92,7 +88,7 @@ function Header() {
   ];
 
   return (
-    <div className="bg-[#ffffff] py-[23px]   relative z-[9999]">
+    <div className="bg-[#ffffff] py-[23px] relative z-[9999]">
       <div className="flex w-[80%] justify-between items-center m-auto">
         <Link href="/">
           <Image src="/dev.svg" width={200} height={100} alt="dev promote" />
@@ -143,9 +139,9 @@ function Header() {
         <div className="md:hidden">
           <button onClick={toggleMobileMenu} className="focus:outline-none">
             {isMobileMenuOpen ? (
-              <FiX className="w-6 h-6" /> // Close (X) icon when menu is open
+              <FiX className="w-6 h-6" />
             ) : (
-              <FiMenu className="w-6 h-6" /> // Hamburger icon when menu is closed
+              <FiMenu className="w-6 h-6" />
             )}
           </button>
 
@@ -159,12 +155,12 @@ function Header() {
                       {item.dropdown ? (
                         <>
                           <button
-                            onClick={toggleMobileAboutDropdown}
+                            onClick={toggleMobileTradingDropdown}
                             className="focus:outline-none flex items-center gap-1"
                           >
                             {item.label} <FaAngleDown />
                           </button>
-                          {isMobileAboutDropdownOpen && (
+                          {isMobileTradingDropdownOpen && (
                             <div className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10">
                               {item.dropdown.map((subItem) =>
                                 subItem.show ? (
