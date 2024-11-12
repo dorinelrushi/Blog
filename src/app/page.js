@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import Popup from "./compoenents/Popup";
 import ListBlog from "./compoenents/Header/ListBlog";
-import TeamStatistics from "./compoenents/Sport";
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
