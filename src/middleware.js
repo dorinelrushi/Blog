@@ -10,7 +10,7 @@ export default authMiddleware({
     "/Derivatives",
     "/not-found",
     "/CryptoNews",
-    "/undefined", // Add this temporarily to prevent redirection issue
+    // Add this temporarily to prevent redirection issue
   ], // Public access to homepage and blog post slugs
 });
 
