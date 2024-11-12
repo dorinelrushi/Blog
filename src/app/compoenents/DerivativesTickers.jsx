@@ -154,11 +154,11 @@ export default function DerivativesTickers() {
                 index % 2 === 0 ? "bg-gray-50" : "bg-white"
               }`}
             >
-              <td className="px-6 py-4">
+              <td className="px-[10px] py-[5px] object-cover">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-12 h-12 rounded-full"
+                  className="w-[35px] h-[35px] rounded-[50px]"
                 />
               </td>
               <td className="px-6 py-4 font-medium text-gray-800">

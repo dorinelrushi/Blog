@@ -32,7 +32,7 @@ export default function TrendingPage() {
   return (
     <div className="w-[90%] lg:w-[75%] mx-auto mt-8">
       {/* Seksioni Informues */}
-      <div className=" p-6 rounded-lg mb-8 text-gray-800">
+      <div className="bg-blue-100 p-6 rounded-lg mb-8 shadow-md text-gray-800">
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Why This Data Matters
         </h2>
@@ -85,7 +85,7 @@ export default function TrendingPage() {
                     <img
                       src={platform.image.small}
                       alt={platform.name}
-                      className="w-10 h-10 shadow rounded-full"
+                      className="w-10 h-10 shadow "
                     />
                   ) : (
                     "No Image"
