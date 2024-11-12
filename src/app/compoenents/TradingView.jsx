@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function TrendingPage({ initialData, error }) {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState(initialData?.articles || []); // Adjusted for News API response structure
 
   if (error) return <p className="text-center text-red-600">{error}</p>;
   if (!data) return <p className="text-center text-gray-500">Loading...</p>;
@@ -29,13 +29,13 @@ export default function TrendingPage({ initialData, error }) {
           <thead className="bg-gray-100 border-b">
             <tr>
               <th className="px-4 py-3 text-gray-700 font-medium text-left">
-                Name
+                Title
               </th>
               <th className="px-4 py-3 text-gray-700 font-medium text-left">
-                Chain Identifier
+                Source
               </th>
               <th className="px-4 py-3 text-gray-700 font-medium text-left">
-                Native Coin ID
+                Published At
               </th>
               <th className="px-4 py-3 text-gray-700 font-medium text-left">
                 Image
@@ -43,25 +43,23 @@ export default function TrendingPage({ initialData, error }) {
             </tr>
           </thead>
           <tbody className="text-gray-600">
-            {data.map((platform, index) => (
+            {data.map((article, index) => (
               <tr
-                key={platform.id}
+                key={index}
                 className={`border-b ${
                   index % 2 === 0 ? "bg-gray-50" : "bg-white"
                 } hover:bg-gray-100`}
               >
-                <td className="px-4 py-2 font-semibold">{platform.name}</td>
+                <td className="px-4 py-2 font-semibold">{article.title}</td>
+                <td className="px-4 py-2">{article.source.name}</td>
                 <td className="px-4 py-2">
-                  {platform.chain_identifier ?? "N/A"}
+                  {new Date(article.publishedAt).toLocaleDateString()}
                 </td>
                 <td className="px-4 py-2">
-                  {platform.native_coin_id ?? "N/A"}
-                </td>
-                <td className="px-4 py-2">
-                  {platform.image?.thumb ? (
+                  {article.urlToImage ? (
                     <img
-                      src={platform.image.small}
-                      alt={platform.name}
+                      src={article.urlToImage}
+                      alt={article.title}
                       className="w-10 h-10"
                     />
                   ) : (
@@ -76,27 +74,26 @@ export default function TrendingPage({ initialData, error }) {
 
       {/* Data Display for Small Screens */}
       <div className="lg:hidden">
-        {data.map((platform, index) => (
+        {data.map((article, index) => (
           <div
-            key={platform.id}
+            key={index}
             className={`border rounded-lg p-4 mb-4 shadow-md ${
               index % 2 === 0 ? "bg-gray-50" : "bg-white"
             }`}
           >
-            <h3 className="text-lg font-semibold mb-2">{platform.name}</h3>
+            <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
             <p className="text-sm text-gray-600">
-              <span className="font-medium">Chain Identifier:</span>{" "}
-              {platform.chain_identifier ?? "N/A"}
+              <span className="font-medium">Source:</span> {article.source.name}
             </p>
             <p className="text-sm text-gray-600">
-              <span className="font-medium">Native Coin ID:</span>{" "}
-              {platform.native_coin_id ?? "N/A"}
+              <span className="font-medium">Published At:</span>{" "}
+              {new Date(article.publishedAt).toLocaleDateString()}
             </p>
             <div className="mt-2">
-              {platform.image?.thumb ? (
+              {article.urlToImage ? (
                 <img
-                  src={platform.image.small}
-                  alt={platform.name}
+                  src={article.urlToImage}
+                  alt={article.title}
                   className="w-12 h-12 rounded-full"
                 />
               ) : (
@@ -112,9 +109,12 @@ export default function TrendingPage({ initialData, error }) {
 
 export async function getServerSideProps() {
   try {
-    const res = await fetch(
-      "https://newsapi.org/v2/everything?q=bitcoin&apiKey=f01ebef32b6047a29ac24dce2682d42a"
-    );
+    const res = await fetch("https://newsapi.org/v2/everything?q=bitcoin", {
+      headers: {
+        "X-Api-Key": "f01ebef32b6047a29ac24dce2682d42a",
+        Authorization: "f01ebef32b6047a29ac24dce2682d42a",
+      },
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
