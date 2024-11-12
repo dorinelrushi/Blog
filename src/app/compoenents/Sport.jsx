@@ -7,8 +7,7 @@ export default function BitcoinNews() {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
 
-  const url =
-    "https://newsapi.org/v2/everything?q=bitcoin&apiKey=f01ebef32b6047a29ac24dce2682d42a";
+  const url = process.env.NEXT_PUBLIC_BITCOIN_API_URL;
 
   useEffect(() => {
     const fetchNews = async () => {
