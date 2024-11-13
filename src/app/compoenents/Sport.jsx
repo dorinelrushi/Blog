@@ -1,104 +1,74 @@
 "use client";
+import React, { useEffect, useState } from "react";
 
-import { useEffect, useState } from "react";
-import { FaClock } from "react-icons/fa"; // Importing icon for 'new' label
-
-export default function BitcoinNews() {
-  const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(null);
-
-  const url = process.env.NEXT_PUBLIC_BITCOIN_API_URL;
+const CryptoNews = () => {
+  const [newsData, setNewsData] = useState([]);
+  const url = "https://cryptocurrency-news2.p.rapidapi.com/v1/cryptodaily";
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": process.env.NEXT_PUBLIC_BITCOIN_API_URL, // Replace with your actual API key
+      "x-rapidapi-host": "cryptocurrency-news2.p.rapidapi.com",
+    },
+  };
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch data");
+        const response = await fetch(url, options);
         const result = await response.json();
 
-        const filteredArticles = result.articles.filter(
-          (article) =>
-            article.title !== "[Removed]" &&
-            article.author !== "[Removed]" &&
-            article.source.name !== "[Removed]" &&
-            article.description !== "[Removed]"
+        // Sort data by date in descending order (latest first)
+        const sortedData = result.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
 
-        const sortedArticles = filteredArticles.sort(
-          (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-        );
-
-        setArticles(sortedArticles);
+        setNewsData(sortedData || []); // Default to empty array if result.data is undefined
       } catch (error) {
-        setError(error.message);
+        console.error(error);
       }
     };
 
-    fetchNews();
+    fetchData();
   }, []);
 
-  const isNew = (date) => {
-    const publishedDate = new Date(date);
-    const now = new Date();
-    const timeDifference = now - publishedDate;
-    return timeDifference < 24 * 60 * 60 * 1000;
-  };
-
-  if (error) return <p className="text-red-600 text-center">Error: {error}</p>;
-  if (!articles.length) return <p className="text-center">Loading...</p>;
-
   return (
-    <div className="w-[90%] lg:w-[75%] mx-auto mt-8">
-      <h1 className="text-3xl font-extrabold text-center mb-10 text-gray-800 dark:text-gray-200">
-        Bitcoin News
-      </h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {articles.map((article, index) => (
-          <a
-            key={index}
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden transition-transform transform hover:scale-105"
-          >
-            {article.urlToImage && (
-              <div className="overflow-hidden">
-                <img
-                  src={article.urlToImage}
-                  alt={article.title}
-                  className="w-full h-48 object-cover transition-transform transform hover:scale-110"
-                />
-              </div>
-            )}
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 line-clamp-2">
-                  {article.title}
-                </h2>
-                {isNew(article.publishedAt) && (
-                  <span className="text-xs text-white bg-red-500 rounded-full px-2 py-1 flex items-center">
-                    <FaClock className="inline mr-1" /> New
-                  </span>
-                )}
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-                {new Date(article.publishedAt).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "2-digit",
-                  year: "numeric",
-                })}
-              </p>
-              <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-                {article.description}
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                By {article.author ?? "Unknown Author"} | Source:{" "}
-                {article.source.name}
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+    <div className="flex flex-wrap justify-center gap-8 p-8 bg-gradient-to-b from-gray-100 to-gray-200">
+      {newsData.map((news, index) => (
+        <div
+          key={index}
+          className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-md transform transition-all duration-300 hover:shadow-xl hover:scale-105 hover:border-blue-500"
+        >
+          <div className="overflow-hidden rounded-t-lg">
+            <img
+              src={news.thumbnail}
+              alt={news.title}
+              className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+          <div className="p-6">
+            <h2 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-blue-500 transition-colors duration-300">
+              {news.title}
+            </h2>
+            <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+              {news.description}
+            </p>
+            <a
+              href={news.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-blue-500 font-semibold hover:underline transition-colors duration-300"
+            >
+              Read more →
+            </a>
+            <p className="text-gray-400 text-xs mt-4">
+              Published on: {new Date(news.createdAt).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
-}
+};
+
+export default CryptoNews;
