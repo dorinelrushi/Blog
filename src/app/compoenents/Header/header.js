@@ -71,6 +71,11 @@ function Header() {
       show: true,
     },
     {
+      label: "API",
+      path: "/TestApi",
+      show: true,
+    },
+    {
       label: "Contact",
       path: "/Contact",
       show: true,
