@@ -2,6 +2,17 @@ import connectToDB from "@/database";
 import Item from "@/models/Item";
 
 export async function GET(req) {
+  if (req.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
+  }
+
   await connectToDB();
 
   try {
@@ -10,9 +21,9 @@ export async function GET(req) {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // Allow all origins
-        "Access-Control-Allow-Methods": "GET, OPTIONS", // Specify allowed methods
-        "Access-Control-Allow-Headers": "Content-Type", // Specify allowed headers
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
     });
   } catch (error) {
