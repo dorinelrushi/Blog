@@ -106,7 +106,7 @@ const BlogPosts = () => {
       <div>
         {data.map((item) => (
           <div key={item.slug}>
-            <a href={\`https://devpromote.online/blog/\${item.slug}\`} target="_blank" rel="noopener noreferrer">
+            <a href={\`https://devpromote.online/items/\${items.slug}\`}  rel="noopener noreferrer">
               <h2>{item.title}</h2>
             </a>
             <p>User ID: {item.userId}</p>
