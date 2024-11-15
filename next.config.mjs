@@ -5,7 +5,7 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: "25mb", // You can adjust the size limit as needed
+      bodySizeLimit: "25mb", // Adjust the size limit as needed
     },
   },
   async headers() {
@@ -27,6 +27,16 @@ const nextConfig = {
           },
         ],
       },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/old-url", // Original URL
+        destination: "/new-url", // Target URL
+        permanent: true, // Set to true for 301 redirects (permanent), false for 302 (temporary)
+      },
+      // Add more redirects as needed
     ];
   },
 };
