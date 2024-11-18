@@ -49,25 +49,27 @@ export async function getItems(userId) {
 }
 
 export async function getItemBySlug(slug) {
-  await connectToDB();
+  await connectToDB(); // Ensure the database is connected
+
   try {
+    // Find the item by slug
     const item = await Item.findOne({ slug });
 
     if (!item) {
-      return null;
+      return null; // Return null if item is not found
     }
 
     // Convert the Mongoose document to a plain JavaScript object
     const plainItem = item.toObject({ getters: true, versionKey: false });
 
-    // Convert `_id` and `createdAt` to string if needed
+    // Convert `_id` and `createdAt` to string
     plainItem._id = plainItem._id.toString();
     plainItem.createdAt = plainItem.createdAt.toISOString();
 
-    return plainItem;
+    return plainItem; // Return the plain object
   } catch (error) {
     console.error("Error fetching item by slug:", error);
-    return null;
+    return null; // Return null on error
   }
 }
 //get all items from db

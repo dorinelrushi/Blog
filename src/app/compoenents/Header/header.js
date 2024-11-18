@@ -1,40 +1,37 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { UserButton, useAuth } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { FaAngleDown } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useAuth } from "@clerk/clerk-react";
+
+const UserButton = dynamic(
+  () => import("@clerk/nextjs").then((mod) => mod.UserButton),
+  { ssr: false }
+);
 
 function Header() {
   const { isSignedIn } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Desktop dropdown state for Trading menu
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Mobile menu state
-  const [isMobileTradingDropdownOpen, setIsMobileTradingDropdownOpen] =
-    useState(false); // Mobile Trading dropdown state
+  const [isClient, setIsClient] = useState(false); // Track client-side rendering
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Toggle desktop Trading dropdown
+  // Ensure client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
-  // Toggle mobile menu and reset the Trading dropdown when menu is closed
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
-      setIsMobileTradingDropdownOpen(false); // Close Trading dropdown when menu closes
-    }
-  };
-
-  // Toggle mobile Trading dropdown
-  const toggleMobileTradingDropdown = () =>
-    setIsMobileTradingDropdownOpen(!isMobileTradingDropdownOpen);
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false); // Close desktop dropdown on outside click
-        setIsMobileTradingDropdownOpen(false); // Close mobile Trading dropdown on outside click
+        setIsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -44,57 +41,20 @@ function Header() {
   }, []);
 
   const menuItems = [
-    {
-      label: "Home",
-      path: "/",
-      show: true,
-    },
+    { label: "Home", path: "/", show: true },
     {
       label: "Crypto News",
       dropdown: [
-        {
-          label: "Bitcoin News",
-          path: "/CryptoNews",
-          show: true,
-        },
-        {
-          label: "Derivatives",
-          path: "/Derivatives",
-          show: true,
-        },
-        {
-          label: "Asset",
-          path: "/Asset",
-          show: true,
-        },
+        { label: "Bitcoin News", path: "/CryptoNews", show: true },
+        { label: "Derivatives", path: "/Derivatives", show: true },
+        { label: "Asset", path: "/Asset", show: true },
       ],
       show: true,
     },
-    {
-      label: "API",
-      path: "/TestApi",
-      show: true,
-    },
-    {
-      label: "Contact",
-      path: "/Contact",
-      show: true,
-    },
-    {
-      label: "My Blog",
-      path: "/Blog",
-      show: isSignedIn,
-    },
-    {
-      label: "Add Blog",
-      path: "/AddBlog",
-      show: isSignedIn,
-    },
-    {
-      label: "Login",
-      path: "/sign-in",
-      show: !isSignedIn,
-    },
+    { label: "API", path: "/TestApi", show: true },
+    { label: "Contact", path: "/Contact", show: true },
+    { label: "My Blog", path: "/Blog", show: isClient && isSignedIn },
+    { label: "Login", path: "/sign-in", show: isClient && !isSignedIn },
   ];
 
   return (
@@ -154,24 +114,25 @@ function Header() {
               <FiMenu className="w-6 h-6" />
             )}
           </button>
-
-          {/* Mobile Menu Items */}
           {isMobileMenuOpen && (
             <div className="absolute left-0 right-0 top-[60px] bg-white shadow-md">
-              <ul className="flex flex-col items-center py-4 list-none">
+              <ul className="flex flex-col items-center py-4">
                 {menuItems.map((item) =>
                   item.show ? (
                     <li key={item.label} className="py-2 relative">
                       {item.dropdown ? (
                         <>
                           <button
-                            onClick={toggleMobileTradingDropdown}
+                            onClick={toggleDropdown}
                             className="focus:outline-none flex items-center gap-1"
                           >
                             {item.label} <FaAngleDown />
                           </button>
-                          {isMobileTradingDropdownOpen && (
-                            <div className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10">
+                          {isDropdownOpen && (
+                            <div
+                              className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10"
+                              ref={dropdownRef}
+                            >
                               {item.dropdown.map((subItem) =>
                                 subItem.show ? (
                                   <Link

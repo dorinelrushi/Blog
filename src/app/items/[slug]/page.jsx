@@ -1,9 +1,21 @@
+import { clerkClient } from "@clerk/nextjs/server";
 import { getItemBySlug } from "@/actions";
-import { clerkClient } from "@clerk/nextjs/server"; // Clerk server-side API
-import ItemDetailClient from "./ItemDetailClient"; // Client component for rendering the UI
+import ItemDetailClient from "./ItemDetailClient";
 
 export default async function ItemDetail({ params }) {
-  const { slug } = params;
+  // Await params.slug since params is asynchronous
+  const { slug } = await params; // Await `params` here
+
+  if (!slug) {
+    console.error("Slug is missing or invalid:", slug);
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-4xl font-bold">Invalid URL</h1>
+      </div>
+    );
+  }
+
+  // Fetch the item by slug
   const item = await getItemBySlug(slug);
 
   if (!item) {
@@ -14,20 +26,44 @@ export default async function ItemDetail({ params }) {
     );
   }
 
-  // Fetch the user data (author) from Clerk using userId
-  const author = await clerkClient.users.getUser(item.userId);
+  if (!item?.userId) {
+    console.error("User ID is missing or invalid:", item);
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-4xl font-bold">Author Not Found</h1>
+      </div>
+    );
+  }
 
-  // Convert the user data to plain object (extract needed fields)
-  const authorPlain = {
-    firstName: author.firstName,
-    lastName: author.lastName,
-    profileImageUrl: author.profileImageUrl, // Clerk user's profile image
-  };
+  try {
+    const user = await (await clerkClient()).users.getUser(item.userId);
 
-  return (
-    <div className="blogPost  w-[99%] lg:w-[56%] mx-auto p-6">
-      {/* Pass the item and author data as plain objects to the client component */}
-      <ItemDetailClient item={item} author={authorPlain} />
-    </div>
-  );
+    if (!user) {
+      console.error("User not found:", item.userId);
+      return (
+        <div className="container mx-auto p-6">
+          <h1 className="text-4xl font-bold">Author Not Found</h1>
+        </div>
+      );
+    }
+
+    const authorPlain = {
+      firstName: user.firstName || "Unknown",
+      lastName: user.lastName || "User",
+      profileImageUrl: user.profileImageUrl || null,
+    };
+
+    return (
+      <div className="blogPost w-[99%] lg:w-[56%] mx-auto p-6">
+        <ItemDetailClient item={item} author={authorPlain} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching author data:", error);
+    return (
+      <div className="container mx-auto p-6">
+        <h1 className="text-4xl font-bold">Error Fetching Author</h1>
+      </div>
+    );
+  }
 }

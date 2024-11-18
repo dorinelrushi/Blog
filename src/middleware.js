@@ -1,9 +1,9 @@
-import { authMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-export default authMiddleware({
+export default clerkMiddleware({
   publicRoutes: [
     "/",
-    "/items/:slug*",
+    "/items/:slug*", // Allow public access to dynamic blog post routes
     "/Contact",
     "/api/send-email",
     "/Asset",
