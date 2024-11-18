@@ -63,6 +63,7 @@ export default function RootLayout({ children }) {
             </div>
             {children}
             <Analytics />
+            <SpeedInsights />
           </div>
           {/* Google AdSense Ad Unit */}
           <div style={{ textAlign: "center", marginTop: "20px" }}>
