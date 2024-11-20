@@ -5,6 +5,8 @@ export default clerkMiddleware({
     "/",
     "/items/:slug*", // Allow public access to dynamic blog post routes
     "/Contact",
+    "/BlogPosts",
+    "/Home",
     "/api/send-email",
     "/Asset",
     "/Derivatives",

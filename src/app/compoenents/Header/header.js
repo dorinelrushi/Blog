@@ -51,6 +51,7 @@ function Header() {
       ],
       show: true,
     },
+    { label: "Blog", path: "/BlogPosts", show: true },
     { label: "API", path: "/TestApi", show: true },
     { label: "Contact", path: "/Contact", show: true },
     { label: "My Blog", path: "/Blog", show: isClient && isSignedIn },
