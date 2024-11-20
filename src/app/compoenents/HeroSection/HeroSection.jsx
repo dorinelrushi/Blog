@@ -19,7 +19,7 @@ function HeroSection() {
           <div className="flex flex-wrap justify-center items-center gap-[30px] text-[18px] lg:text-[22px] mt-[80px] pb-[25px] ">
             <Link
               href={"/TestApi"}
-              className="bg-[white] px-[20px] py-[10px]  text-[#141414] rounded-[10px] hover:bg-[#e2e2e2]"
+              className="bg-[white] px-[20px] py-[10px]  text-[#141414] rounded-[8px] hover:bg-[#e2e2e2]"
             >
               Explore the API
             </Link>

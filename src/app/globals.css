@@ -123,9 +123,17 @@ button.is-active {
   width: 60%;
   height: 111px;
   margin: auto;
-  background: linear-gradient(180deg, #ffffff6e -60%, rgba(20, 20, 20, 0) 100%);
+  background: linear-gradient(180deg, #ffffff31 -60%, rgba(20, 20, 20, 0) 100%);
   clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
+
+@media only screen and (max-width: 900px) {
+  .light {
+    width: 90%;
+    height: 59px;
+  }
+}
+
 .bgCol {
   background: linear-gradient(156deg, #fff 0%, #a5a5a5 100%);
 }
