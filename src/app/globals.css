@@ -146,6 +146,7 @@ button.is-active {
 .bg2Code {
   background: url("/web.png");
   background-size: cover;
+  background-position: 50% 50%;
 }
 .bg3Code {
   background: url("/apizone.png");
