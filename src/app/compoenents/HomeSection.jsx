@@ -64,21 +64,19 @@ function HomeSection() {
               knowledge and grow together.
             </p>
           </div>
-          <Image
+          <img
             src="/Triangle2.svg"
-            width={41}
-            height={100}
+            style={{ width: "50px", height: "auto" }}
             alt="dev"
-            className="absolute right-0 bottom-[-42px] "
+            className="absolute right-[0px] lg:right-0 bottom-[-54px] "
           />
         </div>
-        <div className="RightSection1 w-[99%]  lg:w-[100%] mt-[28px] lg:mt-[30px]  rounded-bl-[41px] rounded-tr-[41px] rounded-br-[41px] bg-[#141414] text-[white]  flex-1 relative">
-          <Image
+        <div className="RightSection1 w-[99.9%]  lg:w-[100%] mt-[0px] lg:mt-[30px]  rounded-bl-[41px] rounded-tr-[41px] rounded-br-[41px] bg-[#141414] text-[white]  flex-1 relative">
+          <img
             src="/Triangle1.svg"
-            width={41}
-            height={100}
+            style={{ width: "50px", height: "auto" }}
             alt="dev"
-            className="absolute top-[-43px] "
+            className="absolute top-[-54px] "
           />
           <div className="p-[60px]">
             <h2 className="mb-[35px] text-[30px] lg:text-[50px]">

@@ -11,7 +11,6 @@ export default clerkMiddleware({
     "/Asset",
     "/Derivatives",
     "/not-found",
-    "/CryptoNews",
     "/api/data",
     "/TestApi",
     // Add this temporarily to prevent redirection issue

@@ -9,10 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Dev Promote | Promote yourself",
-  description:
-    "Promoting Talents | Learning Coding | Become the best developer ",
-
+  title: "Dev Promote | Earning money",
   other: [
     {
       name: "google-site-verification",

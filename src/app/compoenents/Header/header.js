@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Image from "next/image";
+
 import { FaAngleDown } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useAuth } from "@clerk/clerk-react";
@@ -43,9 +43,8 @@ function Header() {
   const menuItems = [
     { label: "Home", path: "/", show: true },
     {
-      label: "Crypto News",
+      label: "Crypto",
       dropdown: [
-        { label: "Bitcoin News", path: "/CryptoNews", show: true },
         { label: "Derivatives", path: "/Derivatives", show: true },
         { label: "Asset", path: "/Asset", show: true },
       ],
@@ -62,7 +61,11 @@ function Header() {
     <div className="bg-[#ffffff] py-[23px] relative z-[9999]">
       <div className="flex w-[80%] justify-between items-center m-auto">
         <Link href="/">
-          <Image src="/dev.svg" width={200} height={100} alt="dev promote" />
+          <img
+            src="/dev.svg"
+            style={{ width: "200px", height: "auto" }}
+            alt="dev promote"
+          />
         </Link>
 
         {/* Desktop Menu */}

@@ -31,16 +31,31 @@ function HeroSection() {
         <div>
           <div className="bgCol hidden lg:block w-[96%] m-auto   rounded-[25px] mt-[90px]">
             <div className="flex flex-wrap justify-center lg:justify-between m-auto items-center gap-[25px] p-[30px]">
-              <Image src="/GOOGLE.svg" width={190} height={1000} alt="google" />
-              <Image src="/COIN.svg" width={190} height={1000} alt="Coin" />
-              <Image
+              <img
+                src="/GOOGLE.svg"
+                alt="google"
+                style={{ width: "190px", height: "auto" }}
+              />
+              <img
+                src="/COIN.svg"
+                style={{ width: "200px", height: "auto" }}
+                alt="Coin"
+              />
+              <img
                 src="/BINANCE.svg"
-                width={190}
-                height={1000}
+                style={{ width: "190px", height: "auto" }}
                 alt="vercel"
               />
-              <Image src="/vercel.svg" width={190} height={1000} alt="vercel" />
-              <Image src="/BY.svg" width={190} height={1000} alt="vercel" />
+              <img
+                src="/vercel.svg"
+                style={{ width: "180px", height: "auto" }}
+                alt="vercel"
+              />
+              <img
+                src="/BY.svg"
+                style={{ width: "180px", height: "auto" }}
+                alt="vercel"
+              />
             </div>
           </div>
         </div>

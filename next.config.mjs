@@ -1,7 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["img.clerk.com", "images.clerk.dev"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+        pathname: "/**", // Allow all paths from this domain
+      },
+      {
+        protocol: "https",
+        hostname: "images.clerk.dev",
+        pathname: "/**", // Allow all paths from this domain
+      },
+      {
+        protocol: "https",
+        hostname: "devpromote.online",
+        pathname: "/**", // Allow all paths from your domain
+      },
+    ],
   },
   experimental: {
     serverActions: {
