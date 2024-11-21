@@ -32,8 +32,8 @@ function HeroSection() {
           <div className="bgCol hidden lg:block w-[96%] m-auto   rounded-[25px] mt-[90px]">
             <div className="flex flex-wrap justify-center lg:justify-between m-auto items-center gap-[25px] p-[30px]">
               <img
-                src="/GOOGLE.svg"
-                alt="google"
+                src="/logospro.svg"
+                alt="logospro"
                 style={{ width: "190px", height: "auto" }}
               />
               <img
