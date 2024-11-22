@@ -7,6 +7,7 @@ export default clerkMiddleware({
     "/Contact",
     "/BlogPosts",
     "/Home",
+    "/Coins",
     "/api/send-email",
     "/Asset",
     "/Derivatives",

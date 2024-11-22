@@ -45,6 +45,7 @@ function Header() {
     {
       label: "Crypto",
       dropdown: [
+        { label: "Coins", path: "/Coins", show: true },
         { label: "Derivatives", path: "/Derivatives", show: true },
         { label: "Asset", path: "/Asset", show: true },
       ],
