@@ -48,6 +48,7 @@ function Header() {
         { label: "Coins", path: "/Coins", show: true },
         { label: "Derivatives", path: "/Derivatives", show: true },
         { label: "Asset", path: "/Asset", show: true },
+        { label: "Convert", path: "/Convert", show: true },
       ],
       show: true,
     },
