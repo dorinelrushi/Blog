@@ -15,6 +15,7 @@ export default clerkMiddleware({
     "/not-found",
     "/api/data",
     "/TestApi",
+    "/Signals",
     // Add this temporarily to prevent redirection issue
   ], // Public access to homepage and blog post slugs
 });

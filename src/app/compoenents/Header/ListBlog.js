@@ -9,8 +9,8 @@ function ListBlog() {
   const [items, setItems] = useState([]);
   const [tags, setTags] = useState({});
   const [selectedTag, setSelectedTag] = useState("");
-  const [isGridView, setIsGridView] = useState(true);
-  1; // State to manage search input
+  const [isGridView, setIsGridView] = useState(true); // State to manage grid or list view
+  const [searchQuery, setSearchQuery] = useState(""); // State to manage search input
   const [isMobileTagOpen, setIsMobileTagOpen] = useState(false); // State to manage mobile dropdown visibility
 
   useEffect(() => {
