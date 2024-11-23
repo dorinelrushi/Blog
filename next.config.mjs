@@ -45,16 +45,6 @@ const nextConfig = {
       },
     ];
   },
-  async redirects() {
-    return [
-      {
-        source: "/old-url", // Original URL
-        destination: "/new-url", // Target URL
-        permanent: true, // Set to true for 301 redirects (permanent), false for 302 (temporary)
-      },
-      // Add more redirects as needed
-    ];
-  },
 };
 
 export default nextConfig;
