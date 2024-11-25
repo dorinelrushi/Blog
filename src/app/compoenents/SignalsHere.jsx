@@ -1,9 +1,6 @@
 "use client";
-
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-
-const Modal = dynamic(() => import("./Modal"), { ssr: false });
+import { useEffect, useState } from "react";
+import Modal from "./Modal";
 
 export default function SignalsHere() {
   const [data, setData] = useState([]);
@@ -11,7 +8,7 @@ export default function SignalsHere() {
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
-  const [signals, setSignals] = useState({}); // Store signals for each coin
+  const [signals, setSignals] = useState({});
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -24,7 +21,6 @@ export default function SignalsHere() {
         }
         const coins = await response.json();
 
-        // Generate signals for each coin
         const generatedSignals = {};
         coins.forEach((coin) => {
           generatedSignals[coin.id] = generateSignal(
@@ -60,7 +56,6 @@ export default function SignalsHere() {
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Algoritmi për të gjeneruar sinjal bazuar në çmim dhe ndryshimet e tregut
   const generateSignal = (priceChange, volume) => {
     if (priceChange > 5 && volume > 1000000)
       return { type: "Buy", confidence: "90%" };
@@ -84,7 +79,6 @@ export default function SignalsHere() {
         Cryptocurrency Market Data
       </h2>
 
-      {/* Search Bar */}
       <div className="mb-6">
         <input
           type="text"
@@ -93,6 +87,63 @@ export default function SignalsHere() {
           onChange={handleSearch}
           className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
         />
+      </div>
+
+      {/* Box layout for mobile */}
+      <div className="block lg:hidden">
+        {filteredData.map((coin, index) => {
+          const signal = signals[coin.id];
+          return (
+            <div
+              key={coin.id}
+              className="border border-gray-200 bg-white rounded-lg shadow-md p-4 mb-4"
+            >
+              <div className="flex items-center space-x-4">
+                <img src={coin.image} alt={coin.name} className="w-10 h-10" />
+                <div>
+                  <h3 className="text-lg font-semibold">{coin.name}</h3>
+                  <p className="text-sm text-gray-500">#{index + 1}</p>
+                </div>
+              </div>
+              <p className="mt-2">
+                <strong>Price:</strong> ${coin.current_price.toFixed(2)}
+              </p>
+              <p
+                className={`mt-1 ${
+                  coin.price_change_percentage_24h >= 0
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                <strong>24h Change:</strong>{" "}
+                {coin.price_change_percentage_24h.toFixed(2)}%
+              </p>
+              <p className="mt-1">
+                <strong>Market Cap:</strong> ${coin.market_cap.toLocaleString()}
+              </p>
+              <p className="mt-1">
+                <strong>Signal:</strong>{" "}
+                <span
+                  className={`${
+                    signal?.type === "Buy"
+                      ? "text-green-600"
+                      : signal?.type === "Sell"
+                      ? "text-red-600"
+                      : "text-yellow-600"
+                  }`}
+                >
+                  {signal?.type} ({signal?.confidence})
+                </span>
+              </p>
+              <button
+                onClick={() => openModal(coin)}
+                className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 w-full"
+              >
+                View Chart
+              </button>
+            </div>
+          );
+        })}
       </div>
 
       {/* Table for Desktop */}
@@ -111,7 +162,7 @@ export default function SignalsHere() {
           </thead>
           <tbody>
             {filteredData.map((coin, index) => {
-              const signal = signals[coin.id]; // Get the signal from state
+              const signal = signals[coin.id];
               return (
                 <tr key={coin.id} className="border-b hover:bg-gray-100">
                   <td className="px-4 py-2">{index + 1}</td>
@@ -166,7 +217,7 @@ export default function SignalsHere() {
         <Modal
           coin={selectedCoin}
           onClose={closeModal}
-          signal={signals[selectedCoin.id]} // Pass signal to modal
+          signal={signals[selectedCoin.id]}
         />
       )}
     </div>
