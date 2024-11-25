@@ -2,9 +2,7 @@
 import React, { useState } from "react";
 
 const ApiGuide = () => {
-  const [apiUrl, setApiUrl] = useState(
-    "https://www.devpromote.online/api/data"
-  );
+  const [apiUrl, setApiUrl] = useState("https://devpromote.online/api/data");
   const [apiResponse, setApiResponse] = useState(null);
   const [error, setError] = useState(null);
 
@@ -48,7 +46,7 @@ const ApiGuide = () => {
             The API endpoint to retrieve blog posts data is:
           </p>
           <pre className="bg-gray-900 text-blue-300 p-2 rounded mt-2 overflow-auto text-xs md:text-sm">
-            https://www.devpromote.online/api/data
+            https://devpromote.online/api/data
           </pre>
 
           <h2 className="text-lg text-blue-400 mt-4">
@@ -61,7 +59,7 @@ let headersList = {
   "User-Agent": "Thunder Client (https://www.thunderclient.com)"
 };
 
-let response = await fetch("https://www.devpromote.online/api/data", {
+let response = await fetch("https://devpromote.online/api/data", {
   method: "GET",
   headers: headersList
 });
@@ -85,7 +83,7 @@ const BlogPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://www.devpromote.online/api/data");
+        const response = await fetch("https://devpromote.online/api/data");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
