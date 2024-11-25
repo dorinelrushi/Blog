@@ -11,6 +11,7 @@ export default function SignalsHere() {
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
+  const [signals, setSignals] = useState({}); // Store signals for each coin
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -22,11 +23,22 @@ export default function SignalsHere() {
           throw new Error("Failed to fetch data");
         }
         const coins = await response.json();
+
+        // Generate signals for each coin
+        const generatedSignals = {};
+        coins.forEach((coin) => {
+          generatedSignals[coin.id] = generateSignal(
+            coin.price_change_percentage_24h || 0,
+            coin.total_volume
+          );
+        });
+        setSignals(generatedSignals);
         setData(coins);
       } catch (error) {
         setError(error.message);
       }
     };
+
     fetchCoins();
   }, []);
 
@@ -48,13 +60,14 @@ export default function SignalsHere() {
     coin.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Funksioni për të gjeneruar sinjalin me përqindje
-  const generateSignal = (priceChange) => {
-    if (priceChange > 5) return { type: "Buy", confidence: "80%" };
-    if (priceChange > 2) return { type: "Buy", confidence: "50%" };
-    if (priceChange < -5) return { type: "Sell", confidence: "80%" };
-    if (priceChange < -2) return { type: "Sell", confidence: "50%" };
-    return { type: "Hold", confidence: "30%" };
+  // Algoritmi për të gjeneruar sinjal bazuar në çmim dhe ndryshimet e tregut
+  const generateSignal = (priceChange, volume) => {
+    if (priceChange > 5 && volume > 1000000)
+      return { type: "Buy", confidence: "90%" };
+    if (priceChange > 2) return { type: "Buy", confidence: "70%" };
+    if (priceChange < -5) return { type: "Sell", confidence: "90%" };
+    if (priceChange < -2) return { type: "Sell", confidence: "70%" };
+    return { type: "Hold", confidence: "50%" };
   };
 
   if (error) {
@@ -82,51 +95,6 @@ export default function SignalsHere() {
         />
       </div>
 
-      {/* Responsive Cards for Mobile */}
-      <div className="lg:hidden grid grid-cols-1 gap-4">
-        {filteredData.map((coin) => {
-          const signal = generateSignal(coin.price_change_percentage_24h || 0);
-          return (
-            <div
-              key={coin.id}
-              className="border rounded-lg p-4 shadow-md bg-white flex items-center justify-between space-x-4"
-            >
-              {/* Icon */}
-              <img
-                src={coin.image}
-                alt={coin.name}
-                className="w-10 h-10 rounded-full"
-              />
-              {/* Name */}
-              <div className="flex flex-col">
-                <h3 className="font-semibold text-gray-800">{coin.name}</h3>
-                <span className="text-sm text-gray-500">
-                  Signal:{" "}
-                  <span
-                    className={`${
-                      signal.type === "Buy"
-                        ? "text-green-600"
-                        : signal.type === "Sell"
-                        ? "text-red-600"
-                        : "text-yellow-600"
-                    }`}
-                  >
-                    {signal.type} ({signal.confidence})
-                  </span>
-                </span>
-              </div>
-              {/* Button */}
-              <button
-                onClick={() => openModal(coin)}
-                className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg hover:shadow-lg transition"
-              >
-                Chart
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
       {/* Table for Desktop */}
       <div className="hidden lg:block">
         <table className="min-w-full border border-gray-200 bg-white rounded-lg shadow-md overflow-hidden">
@@ -143,9 +111,7 @@ export default function SignalsHere() {
           </thead>
           <tbody>
             {filteredData.map((coin, index) => {
-              const signal = generateSignal(
-                coin.price_change_percentage_24h || 0
-              );
+              const signal = signals[coin.id]; // Get the signal from state
               return (
                 <tr key={coin.id} className="border-b hover:bg-gray-100">
                   <td className="px-4 py-2">{index + 1}</td>
@@ -171,14 +137,14 @@ export default function SignalsHere() {
                   <td className="px-4 py-2">
                     <span
                       className={`${
-                        signal.type === "Buy"
+                        signal?.type === "Buy"
                           ? "text-green-600"
-                          : signal.type === "Sell"
+                          : signal?.type === "Sell"
                           ? "text-red-600"
                           : "text-yellow-600"
                       }`}
                     >
-                      {signal.type} ({signal.confidence})
+                      {signal?.type} ({signal?.confidence})
                     </span>
                   </td>
                   <td className="px-4 py-2">
@@ -197,7 +163,11 @@ export default function SignalsHere() {
       </div>
 
       {showModal && selectedCoin && (
-        <Modal coin={selectedCoin} onClose={closeModal} />
+        <Modal
+          coin={selectedCoin}
+          onClose={closeModal}
+          signal={signals[selectedCoin.id]} // Pass signal to modal
+        />
       )}
     </div>
   );
