@@ -1,29 +1,16 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
 import { FaAngleDown } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
-import { useAuth } from "@clerk/clerk-react";
-
-const UserButton = dynamic(
-  () => import("@clerk/nextjs").then((mod) => mod.UserButton),
-  { ssr: false }
-);
+import { useAuth, UserButton } from "@clerk/nextjs";
 
 function Header() {
   const { isSignedIn } = useAuth();
-  const [isClient, setIsClient] = useState(false); // Track client-side rendering
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-
-  // Ensure client-side rendering
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -56,8 +43,8 @@ function Header() {
     { label: "Blog", path: "/BlogPosts", show: true },
     { label: "API", path: "/TestApi", show: true },
     { label: "Contact", path: "/Contact", show: true },
-    { label: "My Blog", path: "/Blog", show: isClient && isSignedIn },
-    { label: "Login", path: "/sign-in", show: isClient && !isSignedIn },
+    { label: "My Blog", path: "/Blog", show: isSignedIn },
+    { label: "Login", path: "/sign-in", show: !isSignedIn },
   ];
 
   return (

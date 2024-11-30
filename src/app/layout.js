@@ -48,10 +48,6 @@ export default function RootLayout({ children }) {
             `,
         }}
       />
-      <Script
-        src="https://cdn.userway.org/widget.js"
-        data-account="cIsC2ofFXp"
-      />
 
       <html lang="en">
         <body className={inter.className}>
