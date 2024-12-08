@@ -1,11 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 function HeroSection() {
   return (
     <div className="mt-[15px] mb-[80px]">
-      <div className="w-[96%] lg:w-[80%] m-auto bg-[#141414] rounded-[31px]  pb-[5px] lg:pb-[25px]">
+      <div className="lgScreen w-[96%] lg:w-[80%] m-auto  rounded-[31px]  pb-[5px] lg:pb-[25px]">
         <div className="light"></div>
         <div className="p-[30px] lg:p-[0]">
           <h1 className="text-[white] text-center m-auto text-[30px] lg:text-[50px] leading-[46px] lg:leading-[65px] max-w-[980px]">

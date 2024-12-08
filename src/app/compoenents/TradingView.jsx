@@ -31,7 +31,7 @@ export default function TrendingPage() {
   return (
     <div className="w-[90%] lg:w-[75%] mx-auto mt-8">
       {/* Seksioni Informues */}
-      <div className=" p-6 rounded-lg mb-8  text-gray-800">
+      <div className=" p-6 rounded-lg mb-8  ">
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Why This Data Matters
         </h2>
@@ -47,32 +47,30 @@ export default function TrendingPage() {
 
       {/* Tabela e të dhënave për ekranet e mëdha */}
       <div className="hidden lg:block">
-        <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden bg-white shadow-md">
-          <thead className="bg-gray-100 border-b">
+        <table className="min-w-full   rounded-lg overflow-hidden  shadow-md">
+          <thead className="">
             <tr>
-              <th className="px-4 py-3 text-gray-700 font-medium text-left">
-                Name
-              </th>
-              <th className="px-4 py-3 text-gray-700 font-medium text-left">
+              <th className="px-4 py-3  font-medium text-left">Name</th>
+              <th className="px-4 py-3  font-medium text-left">
                 Chain Identifier
               </th>
-              <th className="px-4 py-3 text-gray-700 font-medium text-left">
+              <th className="px-4 py-3  font-medium text-left">
                 Native Coin ID
               </th>
-              <th className="px-4 py-3 text-gray-700 font-medium text-left">
-                Image
-              </th>
+              <th className="px-4 py-3 font-medium text-left">Image</th>
             </tr>
           </thead>
-          <tbody className="text-gray-600">
+          <tbody className="text-[#a6aab4] ">
             {data.map((platform, index) => (
               <tr
                 key={platform.id}
-                className={`border-b ${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-gray-100`}
+                className={` ${
+                  index % 2 === 0 ? "bg-[#1b1a1afd]" : "bg-[#111111fd]"
+                } hover:bg-[#292b35fd]`}
               >
-                <td className="px-4 py-2 font-semibold">{platform.name}</td>
+                <td className="px-4 py-2 font-semibold text-[white]">
+                  {platform.name}
+                </td>
                 <td className="px-4 py-2">
                   {platform.chain_identifier ?? "N/A"}
                 </td>
@@ -101,16 +99,16 @@ export default function TrendingPage() {
         {data.map((platform, index) => (
           <div
             key={platform.id}
-            className={`border rounded-lg p-4 mb-4 shadow-md ${
-              index % 2 === 0 ? "bg-gray-50" : "bg-white"
+            className={` rounded-lg p-4 mb-4 shadow-md ${
+              index % 2 === 0 ? "bg-[#111111fd]" : "bg-[#111111fd]"
             }`}
           >
             <h3 className="text-lg font-semibold mb-2">{platform.name}</h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm ">
               <span className="font-medium">Chain Identifier:</span>{" "}
               {platform.chain_identifier ?? "N/A"}
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-[#b6bfcc]">
               <span className="font-medium">Native Coin ID:</span>{" "}
               {platform.native_coin_id ?? "N/A"}
             </p>

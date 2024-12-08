@@ -60,37 +60,37 @@ export default function Allcoins() {
           placeholder="Search coins..."
           value={search}
           onChange={handleSearch}
-          className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full px-4 py-2 bg-[#111111fd] border-[1px] border-[#272727fd] rounded-lg shadow-sm focus:outline-none focus:ring "
         />
       </div>
 
       {/* Table for Large Screens */}
       <div className="hidden lg:block">
-        <table className="min-w-full border border-gray-200 bg-white rounded-lg shadow-md overflow-hidden">
-          <thead className="bg-gray-100">
+        <table className="min-w-full text-[#a6aab4]   bg-[#111111fd] rounded-lg shadow-md overflow-hidden">
+          <thead className="bg-[#111111fd]">
             <tr>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left text-[white]  font-medium">
                 #
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left text-[white]  font-medium">
                 Coin
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left  text-[white] font-medium">
                 Price
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left text-[white]  font-medium">
                 24h
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left  text-[white] font-medium">
                 24h Volume
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left  text-[white] font-medium">
                 Circulating Supply
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left  text-[white] font-medium">
                 Total Supply
               </th>
-              <th className="px-4 py-3 text-left text-gray-700 font-medium">
+              <th className="px-4 py-3 text-left  text-[white] font-medium">
                 Market Cap
               </th>
             </tr>
@@ -99,9 +99,9 @@ export default function Allcoins() {
             {filteredData.map((coin, index) => (
               <tr
                 key={coin.id}
-                className={`border-b ${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                } hover:bg-gray-100`}
+                className={` ${
+                  index % 2 === 0 ? "bg-[#1b1a1afd]" : "bg-[#111111fd]"
+                } hover:bg-[#292b35fd]`}
               >
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2 flex items-center space-x-2">
@@ -110,9 +110,11 @@ export default function Allcoins() {
                     alt={coin.name}
                     className="w-6 h-6 rounded-full"
                   />
-                  <span className="font-semibold">{coin.name}</span>
+                  <span className="font-semibold text-[white]">
+                    {coin.name}
+                  </span>
                 </td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 text-[white]">
                   ${coin.current_price.toLocaleString()}
                 </td>
                 <td
@@ -133,7 +135,7 @@ export default function Allcoins() {
                 <td className="px-4 py-2">
                   {coin.total_supply?.toLocaleString() ?? "N/A"}
                 </td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 text-[white]">
                   ${coin.market_cap.toLocaleString()}
                 </td>
               </tr>
@@ -147,7 +149,7 @@ export default function Allcoins() {
         {filteredData.map((coin, index) => (
           <div
             key={coin.id}
-            className="border rounded-lg p-4 bg-white shadow-md"
+            className="  p-6 bg-[#111111fd] border border-[#1b1b1b] rounded-[15px] shadow-md"
           >
             <div className="flex items-center space-x-4">
               <img
@@ -157,7 +159,7 @@ export default function Allcoins() {
               />
               <h3 className="font-semibold text-lg">{coin.name}</h3>
             </div>
-            <p className="mt-2 text-sm">
+            <p className="mt-3 text-sm">
               <span className="font-medium">Price:</span> $
               {coin.current_price.toLocaleString()}
             </p>
@@ -168,18 +170,18 @@ export default function Allcoins() {
                   : "text-red-600"
               }`}
             >
-              <span className="font-medium">24h Change:</span>{" "}
+              <span className="font-medium ">24h Change:</span>{" "}
               {coin.price_change_percentage_24h?.toFixed(2)}%
             </p>
-            <p className="text-sm">
-              <span className="font-medium">24h Volume:</span> $
+            <p className="text-sm text-[#a6aab4]">
+              <span className="font-medium ">24h Volume:</span> $
               {coin.total_volume.toLocaleString()}
             </p>
-            <p className="text-sm">
+            <p className="text-sm text-[#a6aab4]">
               <span className="font-medium">Circulating Supply:</span>{" "}
               {coin.circulating_supply.toLocaleString()}
             </p>
-            <p className="text-sm">
+            <p className="text-sm text-[#a6aab4]">
               <span className="font-medium">Total Supply:</span>{" "}
               {coin.total_supply?.toLocaleString() ?? "N/A"}
             </p>

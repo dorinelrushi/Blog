@@ -64,7 +64,7 @@ export default function DerivativesTickers() {
 
   return (
     <div className="w-[90%] lg:w-[80%] mx-auto mt-8">
-      <div className="bg-white p-4 lg:p-8 rounded-lg  text-gray-800 mb-8">
+      <div className=" p-4 lg:p-8  mb-8">
         <h2 className="text-xl lg:text-3xl font-semibold text-center mb-4">
           Why This Data Matters
         </h2>
@@ -80,7 +80,10 @@ export default function DerivativesTickers() {
 
       <div className="lg:hidden">
         {data.map((item, index) => (
-          <div key={index} className="bg-white shadow-md rounded-lg p-4 mb-4">
+          <div
+            key={index}
+            className=" bg-[#111111fd] rounded-[20px] shadow-md  p-4 mb-4"
+          >
             <div className="flex items-center mb-3">
               <img
                 src={item.image}
@@ -133,45 +136,37 @@ export default function DerivativesTickers() {
       </div>
 
       <div className="hidden lg:block">
-        <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden bg-white shadow">
-          <thead className="border-b bg-gray-100">
+        <table className="min-w-full   rounded-lg overflow-hidden  shadow">
+          <thead className="">
             <tr>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
-                Logo
-              </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
-                Name
-              </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
+              <th className="px-6 py-4 font-medium text-left ">Logo</th>
+              <th className="px-6 py-4 font-medium text-left ">Name</th>
+              <th className="px-6 py-4 font-medium text-left ">
                 Open Interest (BTC)
               </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
+              <th className="px-6 py-4 font-medium text-left ">
                 Trade Volume 24h (BTC)
               </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
+              <th className="px-6 py-4 font-medium text-left ">
                 Daily Change (%)
               </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
+              <th className="px-6 py-4 font-medium text-left ">
                 Liquidity Index
               </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
+              <th className="px-6 py-4 font-medium text-left ">
                 Established Year
               </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
-                Country
-              </th>
-              <th className="px-6 py-4 font-medium text-left text-gray-500">
-                Volume Chart
-              </th>
+              <th className="px-6 py-4 font-medium text-left ">Country</th>
+              <th className="px-6 py-4 font-medium text-left">Volume Chart</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item, index) => (
               <tr
                 key={index}
-                className={`border-b ${
-                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                }`}
+                className={`${
+                  index % 2 === 0 ? "bg-[#1b1a1afd]" : "bg-[#111111fd]"
+                } hover:bg-[#222329fd]`}
               >
                 <td className="px-6 py-4">
                   <img
@@ -180,16 +175,14 @@ export default function DerivativesTickers() {
                     className="w-10 h-10 rounded-full"
                   />
                 </td>
-                <td className="px-6 py-4 font-semibold text-gray-800">
-                  {item.name}
-                </td>
+                <td className="px-6 py-4 font-semibold ">{item.name}</td>
                 <td className="px-6 py-4">
                   {item.open_interest_btc.toLocaleString()} BTC
                 </td>
                 <td
                   className={`px-6 py-4 ${
                     item.trade_volume_24h_btc > 0
-                      ? "text-[#0a84ff]"
+                      ? "text-[#a6aab4]"
                       : "text-[#ff3b30]"
                   }`}
                 >
@@ -211,8 +204,10 @@ export default function DerivativesTickers() {
                 >
                   {liquidity[index]}
                 </td>
-                <td className="px-6 py-4">{item.year_established || "N/A"}</td>
-                <td className="px-6 py-4">{item.country || "N/A"}</td>
+                <td className="px-6 py-4 text-[#a6aab4]">
+                  {item.year_established || "N/A"}
+                </td>
+                <td className="px-6 py-4 ">{item.country || "N/A"}</td>
                 <td className="px-6 py-4">
                   <Sparklines
                     data={volumeData[index]}

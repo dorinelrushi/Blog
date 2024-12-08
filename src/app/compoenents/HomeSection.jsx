@@ -13,7 +13,7 @@ function HomeSection() {
         </p>
       </div>
       <div className="flex flex-col lg:flex-row  justify-between ">
-        <div className="Left bg-[#141414] rounded-tl-[41px] rounded-tr-[41px] text-[white]  flex-1">
+        <div className=" lgScreen1 Left bg-[#111111fd] rounded-tl-[41px] rounded-tr-[41px] text-[white]  flex-1">
           <div className="p-[50px]">
             <h2 className="text-[30px] lg:text-[50px] mb-[30px]">Our Vision</h2>
             <p className="max-w-[600px] text-[17px] lg:text-[20px]">
@@ -28,7 +28,7 @@ function HomeSection() {
         </div>
         <div className="Right flex-1">
           <div className="p-[50px]">
-            <h2 className="text-[30px] lg:text-[50px] mb-[30px]">
+            <h2 className="text-[30px]  lg:text-[50px] mb-[30px]">
               Career Growth
             </h2>
             <p className="max-w-[600px] text-[17px] lg:text-[20px] ">
@@ -44,7 +44,7 @@ function HomeSection() {
       </div>
 
       <div className="flex  flex-col lg:flex-row justify-between items-start ">
-        <div className="Left w-[100%] bg-[#141414] rounded-bl-[41px] text-[white] flex-1 relative">
+        <div className=" lgScreen2 Left w-[100%] bg-[#111111fd] rounded-bl-[41px] text-[white] flex-1 relative">
           <div className="p-[50px]">
             <h2 className="text-[30px] lg:text-[50px] lg:mt-[-50px] mb-[30px]">
               Our Values
@@ -71,7 +71,7 @@ function HomeSection() {
             className="absolute right-[0px] lg:right-0 bottom-[-54px] "
           />
         </div>
-        <div className="RightSection1 w-[99.9%]  lg:w-[100%] mt-[0px] lg:mt-[30px]  rounded-bl-[41px] rounded-tr-[41px] rounded-br-[41px] bg-[#141414] text-[white]  flex-1 relative">
+        <div className="RightSection1 w-[99.9%]  lg:w-[100%] mt-[0px] lg:mt-[30px]  rounded-bl-[41px] rounded-tr-[41px] rounded-br-[41px] bg-[#111111fd] text-[white]  flex-1 relative">
           <img
             src="/Triangle1.svg"
             style={{ width: "50px", height: "auto" }}
@@ -79,7 +79,7 @@ function HomeSection() {
             className="absolute top-[-54px] "
           />
           <div className="p-[60px]">
-            <h2 className="mb-[35px] text-[30px] lg:text-[50px]">
+            <h2 className="mb-[35px]  text-[30px] lg:text-[50px]">
               Why Choose Us?
             </h2>
             <p className="max-w-[600px] text-[17px] lg:text-[20px]">

@@ -56,16 +56,16 @@ function Page() {
   return (
     <div className="container mx-auto p-6 mt-[30px]">
       <div className="text-center m-auto mb-[65px]">
-        <h1 className="text-[30px]  lg:text-[45px] font-bold mb-[15px] text-[#1f1f1f]">
+        <h1 className="text-[30px]  lg:text-[45px] font-bold mb-[15px] ">
           My Latest Blog 🔥
         </h1>
-        <p className="max-w-[890px] lg:max-w-[790px]  text-[14px] lg:text-[16px] text-center m-auto mb-[30px] text-[#5e5e5e]">
+        <p className="max-w-[890px] lg:max-w-[790px]  text-[14px] lg:text-[16px] text-center m-auto mb-[30px] ">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
           Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
           Suspendisse urna nibh viverra non semper suscipit.
         </p>
         <Link
-          className=" bg-[black] text-[white] rounded-[8px] px-[28px] py-[18px]"
+          className=" bg-[#4f7dfa] text-[white] rounded-[8px] px-[28px] py-[18px]"
           href="/AddBlog"
         >
           Create New Blog
@@ -73,7 +73,10 @@ function Page() {
       </div>
       <div className="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item) => (
-          <div key={item._id} className="border rounded-lg p-4 shadow-lg">
+          <div
+            key={item._id}
+            className="  bg-[#111111fd] border rounded-[15px] border-[#2c2c2c]  p-4 shadow-lg"
+          >
             <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
             {item.imageUrl && (
               <Image
@@ -88,7 +91,7 @@ function Page() {
               {item.tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="px-3 py-2 text-[13px] bg-[#e7e8e9] text-[#646464] rounded"
+                  className="px-3 py-2 text-[13px] bg-[#171718] border border-[#313131] text-[#8a8989] rounded"
                 >
                   {tag}
                 </span>
@@ -97,13 +100,13 @@ function Page() {
             <div className="flex gap-[15px] items-center mt-[25px]">
               <Link
                 href={`/items/${item.slug}`}
-                className="text-black hover:underline"
+                className="text-[#fefeff] hover:underline"
               >
                 View Details
               </Link>
               <Link
                 href={`/update/${item.slug}`} // Link to the update page
-                className="p-[5px] px-[19px] rounded-[5px] bg-[#141414] text-[white]"
+                className="p-[5px] px-[19px] rounded-[5px] bg-[#4f7dfa] text-[white]"
               >
                 Edit
               </Link>

@@ -26,7 +26,7 @@ function WebDev() {
           <div>
             <Link
               href="/Contact"
-              className="flex rounded-[10px]  mt-[35px] w-[190px] text-center justify-center h-[50px] text-[white] bg-[#141414]  items-center  gap-[10px] hover:underline text-[20px]"
+              className="flex rounded-[10px]  mt-[35px] w-[190px] text-center justify-center h-[50px] text-[white] bg-[#4f7dfa]  items-center  gap-[10px] hover:underline text-[20px]"
             >
               Learn More <HiArrowLongRight />
             </Link>

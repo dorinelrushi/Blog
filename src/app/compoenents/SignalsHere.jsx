@@ -85,7 +85,7 @@ export default function SignalsHere() {
           placeholder="Search coins..."
           value={search}
           onChange={handleSearch}
-          className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          className="w-full bg-[#111111fd] px-4 py-2 border border-[#252525] rounded-[5px] "
         />
       </div>
 
@@ -96,7 +96,7 @@ export default function SignalsHere() {
           return (
             <div
               key={coin.id}
-              className="border border-gray-200 bg-white rounded-lg shadow-md p-4 mb-4"
+              className="bg-[#111111fd]  rounded-[15px] border border-[#2b2a2a] p-4 mb-4"
             >
               <div className="flex items-center space-x-4">
                 <img src={coin.image} alt={coin.name} className="w-10 h-10" />
@@ -137,7 +137,7 @@ export default function SignalsHere() {
               </p>
               <button
                 onClick={() => openModal(coin)}
-                className="mt-4 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 w-full"
+                className="mt-4 rounded-[5px] bg-[#4f7dfa] text-white px-4 py-2  w-full"
               >
                 View Chart
               </button>
@@ -148,8 +148,8 @@ export default function SignalsHere() {
 
       {/* Table for Desktop */}
       <div className="hidden lg:block">
-        <table className="min-w-full border border-gray-200 bg-white rounded-lg shadow-md overflow-hidden">
-          <thead className="bg-gray-100">
+        <table className="min-w-full   rounded-lg shadow-md overflow-hidden">
+          <thead className="bg-[#111111fd] border-b border-b-[#272727]">
             <tr>
               <th className="px-4 py-3 text-left">#</th>
               <th className="px-4 py-3 text-left">Coin</th>
@@ -164,7 +164,10 @@ export default function SignalsHere() {
             {filteredData.map((coin, index) => {
               const signal = signals[coin.id];
               return (
-                <tr key={coin.id} className="border-b hover:bg-gray-100">
+                <tr
+                  key={coin.id}
+                  className="bg-[#111111fd] border-b border-b-[#272727] hover:bg-[#292b35fd]"
+                >
                   <td className="px-4 py-2">{index + 1}</td>
                   <td className="px-4 py-2 flex items-center space-x-2">
                     <img src={coin.image} alt={coin.name} className="w-6 h-6" />
@@ -201,7 +204,7 @@ export default function SignalsHere() {
                   <td className="px-4 py-2">
                     <button
                       onClick={() => openModal(coin)}
-                      className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800"
+                      className="bg-[#4f7dfa] text-white px-4 py-2 rounded-[5px]"
                     >
                       View Chart
                     </button>

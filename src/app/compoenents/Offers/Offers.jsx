@@ -12,7 +12,7 @@ function Offers() {
           </h2>
         </div>
         <div className="flex flex-col lg:flex-row gap-[30px] mt-[40px] lg:mt-[100px]">
-          <div className="flex-1 bg-[#ffffff] border-[1px] border-[#e0dfdf] shadow-2xl shadow-[#ececec] p-[30px] rounded-[15px]">
+          <div className="flex-1 bg-[#111111fd] border-[1px] border-[#242323]  p-[30px] rounded-[15px]">
             <h2 className="text-[25px] mb-[19px] font-medium ">
               Cryptocurrency Articles
             </h2>
@@ -28,7 +28,7 @@ function Offers() {
               Learn More <HiArrowLongRight />
             </Link>
           </div>
-          <div className="flex-1 bg-[#ffffff] border-[1px] border-[#e0dfdf] shadow-2xl shadow-[#ececec] p-[30px] rounded-[15px]">
+          <div className="flex-1 bg-[#111111fd] border-[1px] border-[#242323]  p-[30px] rounded-[15px]">
             <h2 className="text-[25px] mb-[19px] font-medium">
               Next.js Tutorials
             </h2>
@@ -43,7 +43,7 @@ function Offers() {
               Learn More <HiArrowLongRight />
             </Link>
           </div>
-          <div className="flex-1 bg-[#ffffff]  border-[1px] border-[#e0dfdf] shadow-2xl shadow-[#ececec] p-[30px] rounded-[15px]">
+          <div className="flex-1 bg-[#111111fd] border-[1px] border-[#242323]  p-[30px] rounded-[15px]">
             <h2 className="text-[25px] mb-[19px] font-medium">Free API</h2>
             <p className="text-[18px]">
               Develop projects with our user-friendly and completely free API!

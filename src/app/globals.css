@@ -6,6 +6,23 @@
   outline: none;
 }
 
+body {
+  background-color: #000000;
+  color: white;
+}
+
+.lgScreen {
+  background: linear-gradient(180deg, #1f66ebb7 -40%, rgba(0, 0, 0, 0.705) 90%);
+}
+
+.hoverFlex:hover {
+  background: linear-gradient(
+    30deg,
+    #0466fa79 -0%,
+    rgba(23, 23, 24, 0.705) 90%
+  );
+}
+
 .blogPost ul {
   list-style-type: disc; /* Ensure bullets are shown */
 }
@@ -16,11 +33,6 @@
 
 .editor-container {
   padding: 10px;
-}
-
-strong {
-  font-weight: bold;
-  color: #1f1f1f; /* Custom color for bold text */
 }
 
 code {
@@ -54,7 +66,6 @@ ol {
 }
 
 .toolbar-btn {
-  background-color: #f5f5f5;
   border: none;
   padding: 8px;
   border-radius: 5px;
@@ -94,29 +105,6 @@ button.is-active {
 .blogPost a {
   color: rgb(253, 59, 59);
   text-shadow: 0px 1px 15px rgba(255, 2, 2, 0.486);
-}
-
-.paypal-buttons-container {
-  width: 100% !important;
-  max-width: 600px !important; /* Set the maximum width */
-}
-
-.paypal-button,
-.paypal-button-container {
-  width: 100% !important;
-}
-
-.paypal-button .paypal-button-content {
-  width: 100% !important;
-}
-
-.paypal-card-fields,
-.paypal-card-fields-container {
-  width: 100% !important;
-}
-
-.paypal-card-fields .card-field-input {
-  width: 100% !important;
 }
 
 .light {

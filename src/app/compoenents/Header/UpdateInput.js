@@ -130,20 +130,20 @@ function UpdateInput({ slug }) {
     <div className="p-1 lg:p-[40px] m-auto">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-6 bg-white p-6 rounded-lg shadow-md"
+        className="flex flex-col gap-6 bg-[#111111fd] p-6 rounded-[15px] shadow-md"
       >
         <input
           placeholder="Name your item"
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="p-2 border rounded"
+          className="p-2 border rounded border-[#302f2f] bg-[#161616fd]"
           required
         />
 
         {/* Tiptap Toolbar */}
         {editor && (
-          <div className="toolbar flex gap-2 mb-2">
+          <div className="toolbar  flex gap-2 mb-2">
             <button
               type="button"
               onClick={() => editor.chain().focus().toggleBold().run()}
@@ -211,14 +211,14 @@ function UpdateInput({ slug }) {
         )}
 
         {/* Tiptap Editor */}
-        <div className="editor-container h-60 mb-8 overflow-auto border rounded">
+        <div className="editor-container border border-[#353535]  h-60 mb-8 overflow-auto  rounded">
           <EditorContent editor={editor} />
         </div>
 
         <input
           type="file"
           onChange={handleImageChange}
-          className="p-2 w-[80%] mt-[50px] lg:mt-[5px] lg:w-[15%] rounded bg-gray-100 border"
+          className="p-2 w-[80%] mt-[20px] lg:mt-[5px] lg:w-[15%] rounded bg-[#252525] "
         />
         <div className="flex flex-col gap-2">
           <input
@@ -227,13 +227,13 @@ function UpdateInput({ slug }) {
             value={tagInput}
             onChange={handleTagInputChange}
             onKeyDown={handleTagKeyDown}
-            className="p-2 border rounded"
+            className="p-2 border border-[#2b2a2a] rounded bg-[#1b1b1b]"
           />
           <div className="flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <div
                 key={index}
-                className="flex items-center gap-1 p-2 bg-[#1f1f1f] text-[white] rounded"
+                className="flex items-center gap-1 p-2 bg-[#272727] text-[white] rounded"
               >
                 <span>{tag}</span>
                 <button
@@ -249,7 +249,7 @@ function UpdateInput({ slug }) {
         </div>
         <button
           type="submit"
-          className="p-3 w-full rounded bg-[#1f1f1f] text-white"
+          className="p-3 w-full rounded bg-[#4f7dfa] text-white "
         >
           Update
         </button>

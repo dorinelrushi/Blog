@@ -1,8 +1,6 @@
 "use client"; // Add this since you're using Next.js with App Router, and form submission requires client-side handling.
 
-import Head from "next/head";
 import { useState } from "react";
-import ReactCompareImage from "react-compare-image"; // Import React Compare Image for the before/after slider
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -46,7 +44,7 @@ export default function Contact() {
   return (
     <div>
       {/* Form Section */}
-      <div className="bg-[#2281FD] py-[120px] mb-[150px] relative">
+      <div className="bg-[#141414] py-[120px] mb-[150px] relative">
         <div>
           <h2 className="text-[30px] lg:text-[60px] text-center font-bold text-white">
             Contact Me
@@ -117,7 +115,7 @@ export default function Contact() {
             ></textarea>
             <button
               type="submit"
-              className="bg-blue-500 w-[190px] h-[50px] text-[20px]  rounded-[8px] text-white "
+              className="bg-[#141414] w-[190px] h-[50px] text-[20px]  rounded-[8px] text-white "
             >
               Send
             </button>

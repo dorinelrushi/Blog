@@ -48,7 +48,7 @@ function Header() {
   ];
 
   return (
-    <div className="bg-[#ffffff] py-[23px] relative z-[9999]">
+    <div className=" py-[23px] relative z-[9999]">
       <div className="flex w-[80%] justify-between items-center m-auto">
         <Link href="/">
           <img
@@ -73,7 +73,7 @@ function Header() {
                     </button>
                     {isDropdownOpen && (
                       <div
-                        className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10"
+                        className="absolute left-0 mt-2 w-[150px]  border-[1px] border-[#252525] bg-[#181818] shadow-lg rounded-lg z-10"
                         ref={dropdownRef}
                       >
                         {item.dropdown.map((subItem) =>
@@ -81,7 +81,7 @@ function Header() {
                             <Link
                               key={subItem.label}
                               href={subItem.path}
-                              className="block px-4 py-2 text-black hover:bg-gray-100 rounded-md"
+                              className="block px-4 py-2 hover:bg-[#343e5f] rounded-md"
                             >
                               {subItem.label}
                             </Link>
@@ -109,7 +109,7 @@ function Header() {
             )}
           </button>
           {isMobileMenuOpen && (
-            <div className="absolute left-0 right-0 top-[60px] bg-white shadow-md">
+            <div className="absolute left-0 right-0 top-[60px] bg-[#111111] shadow-md">
               <ul className="flex flex-col items-center py-4">
                 {menuItems.map((item) =>
                   item.show ? (
@@ -118,13 +118,13 @@ function Header() {
                         <>
                           <button
                             onClick={toggleDropdown}
-                            className="focus:outline-none flex items-center gap-1"
+                            className="focus:outline-none   flex items-center gap-1"
                           >
                             {item.label} <FaAngleDown />
                           </button>
                           {isDropdownOpen && (
                             <div
-                              className="absolute left-0 mt-2 w-[150px] bg-white shadow-lg rounded-lg z-10"
+                              className="absolute left-0 mt-2 w-[150px] border-[1px] border-[#252525] bg-[#181818]  shadow-lg rounded-lg z-10"
                               ref={dropdownRef}
                             >
                               {item.dropdown.map((subItem) =>
@@ -132,7 +132,7 @@ function Header() {
                                   <Link
                                     key={subItem.label}
                                     href={subItem.path}
-                                    className="block px-4 py-2 text-black hover:bg-gray-100"
+                                    className="block px-4 py-2  hover:bg-[#3a3a3a]"
                                   >
                                     {subItem.label}
                                   </Link>
