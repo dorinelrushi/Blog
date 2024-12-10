@@ -140,3 +140,50 @@ button.is-active {
   background: url("/apizone.png");
   background-size: cover;
 }
+
+.blurI,
+.social12 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.social12 {
+  background: url("/linkedin.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  border: 1px solid hsla(0, 0%, 95%, 0.151);
+  flex-direction: column;
+  padding: 30px;
+  text-align: center;
+}
+
+.social11 {
+  background: url("/dribble.png");
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.social10 {
+  background: url("/behance.png");
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.blurI {
+  max-width: 100%;
+  align-items: center;
+  background: linear-gradient(93.89deg, #4e4e4e1a -1.78%, #222221d0 107.99%);
+  padding: 10px;
+  border-radius: 120px;
+  border: 1px solid hsla(0, 0%, 67%, 0.178);
+}
+
+.social10,
+.social11 {
+  border: 1px solid hsla(0, 0%, 95%, 0.151);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  text-align: center;
+}

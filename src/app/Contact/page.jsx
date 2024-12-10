@@ -44,7 +44,7 @@ export default function Contact() {
   return (
     <div>
       {/* Form Section */}
-      <div className="bg-[#141414] py-[120px] mb-[150px] relative">
+      <div className="bg-[#0d0d0e] py-[120px] mb-[150px] relative">
         <div>
           <h2 className="text-[30px] lg:text-[60px] text-center font-bold text-white">
             Contact Me
@@ -75,7 +75,7 @@ export default function Contact() {
             <div className="flex flex-col lg:flex-row gap-[30px]">
               <input
                 type="text"
-                className="w-[100%] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
+                className="w-[100%]  border border-[#313131] bg-[#1b1b1b] p-[15px] rounded-[8px]"
                 name="name"
                 placeholder="Name"
                 value={formData.name}
@@ -83,7 +83,7 @@ export default function Contact() {
                 required
               />
               <input
-                className="w-[100%] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
+                className="w-[100%] border border-[#313131] bg-[#1b1b1b] p-[15px] rounded-[8px]"
                 type="text"
                 name="lastname"
                 placeholder="Last Name"
@@ -95,7 +95,7 @@ export default function Contact() {
             <br />
             <input
               type="email"
-              className="w-[100%] mb-[30px] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
+              className="w-[100%] mb-[30px] border border-[#313131] bg-[#1b1b1b] p-[15px] rounded-[8px]"
               name="email"
               placeholder="Email"
               value={formData.email}
@@ -106,7 +106,7 @@ export default function Contact() {
             <br />
             <textarea
               name="description"
-              className="w-[100%] resize-none mb-[30px] bg-[#F8F8F8] border-[1px] border-[#DCDCDC] p-[15px] rounded-[8px]"
+              className="w-[100%] resize-none mb-[30px] bg-[#1b1b1b] border-[1px] border-[#313131] p-[15px] rounded-[8px]"
               placeholder="Write Something..."
               rows={8}
               value={formData.description}
@@ -115,7 +115,7 @@ export default function Contact() {
             ></textarea>
             <button
               type="submit"
-              className="bg-[#141414] w-[190px] h-[50px] text-[20px]  rounded-[8px] text-white "
+              className="bg-[#4f7dfa] w-[190px] h-[50px] text-[20px]  rounded-[8px] text-white "
             >
               Send
             </button>
